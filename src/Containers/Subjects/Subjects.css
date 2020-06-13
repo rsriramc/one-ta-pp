@@ -1,0 +1,45 @@
+.Subjects {
+   min-height: 110vh;
+   width: 78%;
+   margin-left: 20vw;
+   background-image: url(../../Assets/Images/bg.png);
+   background-attachment: fixed;
+   background-position: top;
+   background-size: contain;
+   transition: 0.2s all;
+}
+
+@media screen and (max-width: 500px) {
+   .Subjects {
+      min-height: 110vh;
+      width: 100%;
+      margin-left: 0;
+      background-image: url(../../Assets/Images/bg.png);
+      background-attachment: fixed;
+      background-position: top;
+      background-size: contain;
+      margin-bottom: 80px;
+   }
+
+   .SubjectContent{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+   }
+
+   .Add{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgb(231, 231, 231);
+      color: rgb(56, 105, 101);
+      box-shadow:  0px 0px 10px 2px rgb(77, 77, 77) inset;
+      height: 40px;
+      font-size: 24px;
+      padding: 2px 10px;
+      line-height: 36px;
+      border-radius: 20px;
+
+   }
+   
+}

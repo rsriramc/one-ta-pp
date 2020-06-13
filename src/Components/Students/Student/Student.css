@@ -1,0 +1,13 @@
+.Student{
+   margin: 20px;
+   height: 60px;
+   border: 2px solid #eee;
+   box-shadow: 2px 2px 4px #ccc;
+}
+
+.Name{
+   padding: 0 20px;
+   width: 30%;
+   line-height: 56px;
+   display: inline-block;
+}

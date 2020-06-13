@@ -1,0 +1,34 @@
+.Wrapper{
+   display: block;
+   background-color: #fff;
+   width: 90%;
+   max-width: 700px;
+   min-height: 100px;
+   margin: 0 auto;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   z-index: 500;
+   padding: 20px;
+   box-sizing: border-box;
+}
+
+.FormContainer{
+   width: 100%;
+}
+
+.FormContainer label{
+   display: block;
+   margin: 2px 10px;
+   font-size: 20px;
+}
+.FormContainer input{
+   display: block;
+   margin: 10px;
+   height: 28px;
+   border: 2px solid #ccc;
+   border-radius: 2px;
+   width: 80%;
+   font-size: 18px;
+}

@@ -1,0 +1,158 @@
+.SubjectBlocks {
+   display: inline-block;
+   width: 250px;
+   height: 250px;
+   margin: 20px;
+   border: 2px solid #eee;
+   box-shadow: 2px 3px 6px #ccc;
+   box-sizing: border-box;
+   padding: 10px;
+   position: relative;
+   transition: 0.4s transform;
+}
+
+.SubjectBlocks:hover {
+   transform: scale(1.05);
+   box-shadow: 4px 6px 12px #aaa;
+}
+
+.ImgBlocks {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-image: url(../../Assets/Images/dataAnalysis.png);
+   box-sizing: border-box;
+   background-position: center;
+   background-size: cover;
+   top: 0;
+   left: 0;
+}
+
+.InfoBlocks {
+   width: 100%;
+   border: 1px solid black;
+   background-color: #ffffffcc;
+   position: absolute;
+   padding: 10px;
+   box-sizing: border-box;
+   bottom: 0;
+   left: 0;
+}
+
+.CodeBlocks {
+   float: right;
+}
+
+@media screen and (max-width: 500px) {
+   .SubjectBlocks {
+      display: inline-block;
+      width: 42%;
+      height: 250px;
+      margin: 10px;
+      border: 2px solid #eee;
+      box-shadow: 4px 5px 6px #aaa;
+      box-sizing: border-box;
+      padding: 10px;
+      position: relative;
+      transition: 0.4s transform;
+   }
+
+   .InfoBlocks {
+      width: 100%;
+      font-weight: 600;
+      border: none;
+      min-height: 104px;
+      background-color: #ffffffe3;
+      box-shadow: inset 10px #111;
+      position: absolute;
+      padding: 10px;
+      box-sizing: border-box;
+      bottom: 0;
+      left: 0;
+   }
+}
+
+.SubjectTiles {
+   width: 80%;
+   border: 2px solid black;
+   max-width: 600px;
+   margin: 20px auto;
+   height: 150px;
+   position: relative;
+}
+
+.ImgTiles {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-image: url(../../Assets/Images/devicemanagement.png);
+   box-sizing: border-box;
+   background-position: 50% 20%;
+   background-size: cover;
+   top: 0;
+   left: 0;
+}
+
+.InfoTiles {
+   width: 100%;
+   border: 1px solid black;
+   background-color: #ffffffdd;
+   position: absolute;
+   padding: 10px;
+   box-sizing: border-box;
+   bottom: 0;
+   left: 0;
+}
+
+.CodeTiles {
+   margin: 0 10px;
+   float: right;
+}
+
+.brTiles {
+   display: none;
+}
+
+.SubjectList {
+   width: 48%;
+   border: 2px solid black;
+   min-width: 340px;
+   max-width: 440px;
+   display: inline-block;
+   margin: 20px 0;
+   height: 100px;
+   position: relative;
+}
+
+.ImgList {
+   position: absolute;
+   height: 100%;
+   width: 30%;
+   background-image: url(../../Assets/Images/devicemanagement.png);
+   box-sizing: border-box;
+   background-position: 50% 20%;
+   background-size: cover;
+   top: 0;
+   left: 0;
+}
+
+.InfoList {
+   width: 69%;
+   background-color: #ffffffdd;
+   position: absolute;
+   padding: 10px;
+   box-sizing: border-box;
+   bottom: 0;
+   right: 0;
+   height: 100%;
+   line-height: 1.6;
+}
+
+.CodeList {
+   margin: 0 10px;
+   float: right;
+}
+
+.brList {
+   display: block;
+}

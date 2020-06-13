@@ -1,0 +1,24 @@
+.SideBar {
+   position: fixed;
+   top: 70px;
+   left: 5px;
+   width: 19%;
+   height: 100vh;
+   float: left;
+   padding: 5px;
+}
+
+@media screen and (max-width: 500px) {
+   .SideBar {
+      position: fixed;
+      top: unset;
+      bottom: 50px;
+      left: 10px;
+      width: 40px;
+      height: auto;
+      float: left;
+      padding: 5px;
+      z-index: 20;
+      overflow: hidden;
+   }
+}

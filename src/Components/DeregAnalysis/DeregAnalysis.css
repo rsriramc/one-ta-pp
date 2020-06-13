@@ -1,0 +1,9 @@
+.DeregAnalysis{
+   min-height: 110vh;
+   width: 78%;
+   margin-left: 20vw;
+   background-image: url(../../Assets/Images/bg.png);
+   background-attachment: fixed;
+   background-position: top;
+   background-size: contain;
+}

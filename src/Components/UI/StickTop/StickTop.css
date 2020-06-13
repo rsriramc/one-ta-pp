@@ -1,0 +1,31 @@
+.StickTop{
+   position: sticky;
+   background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.726),rgba(216, 216, 216, 0.513)), url(../../../Assets/Images/deregAnalysis.jpg
+   );
+   background-position: 50% 40%;
+   box-sizing: border-box;
+   z-index: 10;
+   padding: 10px;
+   /* margin: 20px; */
+   font-size: 24px;
+   font-weight: bold;
+   color: rgb(7, 42, 71);
+}
+
+.DisplayStyle{
+   height: 32px;
+   width: 32px;
+   float: right;
+   box-sizing: border-box;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.DisplayStyle .Inside{
+   width: 40%;
+   height: 40%;
+   background-color: #fff;
+   box-sizing: border-box;
+}
