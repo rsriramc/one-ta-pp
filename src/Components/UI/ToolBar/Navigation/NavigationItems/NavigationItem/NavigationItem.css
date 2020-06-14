@@ -1,0 +1,52 @@
+.NavItem {
+   display: inline-block;
+   height: 32px;
+   line-height: 26px;
+   margin: 9px 16px;
+   padding: 0 10px;
+
+   color: rgb(7, 42, 71);
+   text-decoration: none;
+   border-radius: 5px;
+   background-color: white;
+   border: 2px solid rgb(7, 42, 71);
+   box-sizing: border-box;
+   font-weight: bold;
+   transition: 0.3s all;
+}
+
+.active,
+.NavItem:hover,
+.NavItem:active {
+   color: white;
+   background-color: rgb(7, 42, 71);
+}
+
+@media screen and (max-width: 700px) {
+   .NavItem {
+      display: block;
+      height: 50px;
+      width: 100%;
+      line-height: 48px;
+      margin: 20px 0;
+      padding: 0 10px;
+      color: rgb(63, 99, 129);
+      text-decoration: none;
+      border-radius: 0px;
+      font-size: 18px;
+      background-color: white;
+      border: none;
+      border-bottom: 1px solid rgb(7, 42, 71);
+      box-sizing: border-box;
+      font-weight: bold;
+      transition: 0.3s all;
+   }
+
+   .active,
+   .NavItem:hover,
+   .NavItem:active {
+      color: rgb(7, 42, 71);
+      background-color: white;
+      border-bottom: 4px solid rgb(7, 42, 71);
+   }
+}

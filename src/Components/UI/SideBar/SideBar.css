@@ -1,4 +1,14 @@
-.SideBar {
+.SideBarSubjects {
+   position: fixed;
+   top: 70px;
+   left: 5px;
+   width: 19%;
+   height: 100vh;
+   float: left;
+   padding: 5px;
+}
+
+.SideBarStudents {
    position: fixed;
    top: 70px;
    left: 5px;
@@ -9,7 +19,7 @@
 }
 
 @media screen and (max-width: 500px) {
-   .SideBar {
+   .SideBarSubjects {
       position: fixed;
       top: unset;
       bottom: 50px;
@@ -20,5 +30,9 @@
       padding: 5px;
       z-index: 20;
       overflow: hidden;
+   }
+
+   .SideBarStudents{
+      display: none;
    }
 }

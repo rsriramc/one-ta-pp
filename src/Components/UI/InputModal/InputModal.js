@@ -34,7 +34,7 @@ const inputModal = (props) => {
                      e.preventDefault();
                      props.submit();
                   }}
-               >Add Subject</button>
+               >{props.submitText}</button>
             </form>
          </div>
       </div>

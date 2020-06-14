@@ -12,6 +12,7 @@
    z-index: 500;
    padding: 20px;
    box-sizing: border-box;
+   box-shadow: 3px 3px 6px #aaa;
 }
 
 .FormContainer{
@@ -25,10 +26,22 @@
 }
 .FormContainer input{
    display: block;
-   margin: 10px;
+   margin: 10px auto;
+   padding: 2px 10px;
    height: 28px;
    border: 2px solid #ccc;
    border-radius: 2px;
    width: 80%;
    font-size: 18px;
+}
+
+.Submit{
+   display: block;
+   width: 200px;
+   margin: 20px auto;
+   background-color: lightgreen;
+   height: 34px;
+   font-size: 18px;
+   line-height: 30px;
+   border: 2px solid #bbb;
 }

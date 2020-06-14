@@ -9,13 +9,14 @@ import StickTop from "../../Components/UI/StickTop/StickTop";
 import SideBar from "../../Components/UI/SideBar/SideBar";
 import BackDrop from "../../Components/UI/BackDrop/BackDrop";
 import InputModal from "../../Components/UI/InputModal/InputModal";
+import subject from "../../Components/Subject/Subject";
 
 class Subjects extends React.Component {
    state = {
       display: ["Blocks", "Tiles", "List"],
       isAddingSubject: false,
       newSubjectDetails: {
-         title: " ",
+         title: "",
          code: "",
          credits: [0, 0, 0],
          sem: "",
@@ -24,12 +25,10 @@ class Subjects extends React.Component {
    };
 
    addSubject = (newSubject) => {
-      console.log(newSubject);
       if (this.state.isTheFormValid) {
-         console.log('request sent');
          this.props.addSubject({ ...newSubject });
+         this.setState({ isAddingSubject: false });
       }
-      this.setState({ isAddingSubject: false });
    };
 
    isTheNewSubjectValid = (newSubject) => {
@@ -41,7 +40,6 @@ class Subjects extends React.Component {
    };
 
    changeValue = (id, newValue) => {
-      console.log(id + " " + newValue);
       let newSubjectsCopy = { ...this.state.newSubjectDetails };
       newSubjectsCopy[id] = newValue;
       this.setState({ newSubjectDetails: newSubjectsCopy });
@@ -51,7 +49,7 @@ class Subjects extends React.Component {
    subjectClickHandler = (key) => {
       this.props.subjects.forEach((value, index) => {
          if (value.code === key) {
-            this.props.history.push("/" + index);
+            this.props.history.push("/subjects/" + value.code);
          }
       });
    };
@@ -86,7 +84,7 @@ class Subjects extends React.Component {
                {/* Links<br/>
                Deregistation Analysis<br />
                Recent */}
-               <SideBar />
+               <SideBar place="Subjects" />
             </div>
             <div className={classes.Subjects}>
                <StickTop
@@ -98,7 +96,7 @@ class Subjects extends React.Component {
                </StickTop>
                <div className={classes.SubjectContent}>{subjects}</div>
                <div
-                  className={classes.Add}
+                  className={classes.AddNew}
                   onClick={() => {
                      this.setState((prevState) => {
                         return { isAddingSubject: !prevState.isAddingSubject };
@@ -118,6 +116,7 @@ class Subjects extends React.Component {
             />
             <InputModal
                show={this.state.isAddingSubject}
+               submitText = "Add New Subject"
                submit={() => {
                   this.addSubject({
                      ...this.state.newSubjectDetails,

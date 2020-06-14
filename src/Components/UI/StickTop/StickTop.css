@@ -12,6 +12,10 @@
    color: rgb(7, 42, 71);
 }
 
+.Content{
+   mix-blend-mode: multiply;
+}
+
 .DisplayStyle{
    height: 32px;
    width: 32px;
@@ -26,6 +30,6 @@
 .DisplayStyle .Inside{
    width: 40%;
    height: 40%;
-   background-color: #fff;
+   background-color: rgb(7, 42, 71);
    box-sizing: border-box;
 }

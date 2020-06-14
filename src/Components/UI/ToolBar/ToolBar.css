@@ -1,0 +1,17 @@
+.ToolBar {
+   border: 1px solid black;
+   height: 64px;
+   line-height: 52px;
+   padding: 5px 10px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 20;
+   box-sizing: border-box;
+   background-color: #fff;
+}
+
+.Logo{
+   height: 100%;
+}

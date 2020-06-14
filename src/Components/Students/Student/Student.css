@@ -1,13 +1,115 @@
-.Student{
+.Student {
    margin: 20px;
    height: 60px;
    border: 2px solid #eee;
    box-shadow: 2px 2px 4px #ccc;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
 }
 
-.Name{
-   padding: 0 20px;
-   width: 30%;
-   line-height: 56px;
+.Icon {
    display: inline-block;
+   transform-origin: center;
+   transform: scale(1.4);
+   margin-right: 10px;
+}
+
+.Name {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   padding: 0 10px;
+   line-height: 56px;
+   width: 20%;
+   display: inline-block;
+}
+
+.RollNo {
+   display: inline-block;
+   line-height: 56px;
+   padding: 0 10px;
+}
+
+.Add {
+   overflow: hidden;
+   white-space: nowrap;
+   background-color: rgba(144, 238, 144, 0.603);
+   display: flex;
+   height: 32px;
+   width: 32px;
+   border: none;
+   font-size: 20px;
+   align-items: center;
+   transition: 0.6s width;
+}
+
+.Minus {
+   overflow: hidden;
+   white-space: nowrap;
+   background-color: rgba(245, 167, 93, 0.603);
+   display: flex;
+   height: 32px;
+   width: 32px;
+   border: none;
+   font-size: 20px;
+   align-items: center;
+   transition: 0.6s width;
+}
+
+.Join {
+   overflow: hidden;
+   white-space: nowrap;
+   background-color: rgba(97, 222, 226, 0.603);
+   display: flex;
+   height: 32px;
+   width: 32px;
+   border: none;
+   font-size: 16px;
+   padding-left: 8px;
+   align-items: center;
+   transition: 0.6s width;
+}
+
+.Remove {
+   overflow: hidden;
+   white-space: nowrap;
+   background-color: rgba(245, 128, 93, 0.603);
+   display: flex;
+   height: 32px;
+   width: 32px;
+   border: none;
+   font-size: 16px;
+   align-items: center;
+   transition: 0.6s width;
+}
+
+@media screen and (min-width: 780px) {
+   .Add {
+      text-align: center;
+      font-size: 18px;
+      width: 118px;
+      padding-top: 2px;
+   }
+
+   .Minus {
+      text-align: center;
+      font-size: 18px;
+      width: 118px;
+      padding-top: 2px;
+   }
+
+   .Join {
+      text-align: center;
+      font-size: 18px;
+      width: 138px;
+      padding-top: 2px;
+   }
+
+   .Remove {
+      text-align: center;
+      font-size: 18px;
+      width: 138px;
+      padding-top: 2px;
+   }
 }

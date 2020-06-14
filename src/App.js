@@ -11,6 +11,8 @@ import DeregAnalysis from "./Components/DeregAnalysis/DeregAnalysis";
 
 import { Route, Switch } from "react-router-dom";
 
+// import axios from "axios";
+
 class App extends React.Component {
    state = {
       numSubjects: 6,
@@ -61,7 +63,7 @@ class App extends React.Component {
             ],
          },
          {
-            title: "Algorithms II",
+            title: "Data Analysis",
             code: "CS30001",
             credits: [4, 1, 0],
             sem: 6,
@@ -283,7 +285,7 @@ class App extends React.Component {
       ],
    };
 
-   studentClickHandler = (code, name) => {
+   studentDeregHandler = (code, name) => {
       const subjectsCopy = this.state.subjects.map((subject) => {
          return {
             ...subject,
@@ -302,9 +304,84 @@ class App extends React.Component {
                   subjectsCopy[index].students[index2].isDereg = !subjectsCopy[
                      index
                   ].students[index2].isDereg;
+
+                  subjectsCopy[index].students[index2].isAdded =
+                     subjectsCopy[index].students[index2].isAdded &&
+                     subjectsCopy[index].students[index2].isDereg;
                   this.setState({ subjects: subjectsCopy });
                }
             });
+      });
+   };
+
+   studentAddHandler = (code, name) => {
+      const subjectsCopy = this.state.subjects.map((subject) => {
+         return {
+            ...subject,
+            credits: [...subject.credits],
+            students: subject.students.map((student) => {
+               return {
+                  ...student,
+               };
+            }),
+         };
+      });
+      subjectsCopy.forEach((subject, index) => {
+         if (code === subject.code)
+            subject.students.forEach((student, index2) => {
+               if (student.name === name) {
+                  subjectsCopy[index].students[index2].isAdded = !subjectsCopy[
+                     index
+                  ].students[index2].isAdded;
+                  console.log("changing");
+
+                  this.setState({ subjects: subjectsCopy });
+               }
+            });
+      });
+   };
+
+   addAllStudents = (code) => {
+      const subjectsCopy = this.state.subjects.map((subject) => {
+         return {
+            ...subject,
+            credits: [...subject.credits],
+            students: subject.students.map((student) => {
+               return {
+                  ...student,
+               };
+            }),
+         };
+      });
+      subjectsCopy.forEach((subject, index) => {
+         if (code === subject.code)
+            subject.students.forEach((student, index2) => {
+               subjectsCopy[index].students[index2].isAdded = true;
+               console.log("changing");
+            });
+         this.setState({ subjects: subjectsCopy });
+      });
+   };
+
+   minusAllStudents = (code) => {
+      const subjectsCopy = this.state.subjects.map((subject) => {
+         return {
+            ...subject,
+            credits: [...subject.credits],
+            students: subject.students.map((student) => {
+               return {
+                  ...student,
+               };
+            }),
+         };
+      });
+      subjectsCopy.forEach((subject, index) => {
+         if (code === subject.code)
+            subject.students.forEach((student, index2) => {
+               subjectsCopy[index].students[index2].isAdded = false;
+               console.log("changing");
+            });
+         this.setState({ subjects: subjectsCopy });
       });
    };
 
@@ -321,6 +398,31 @@ class App extends React.Component {
          };
       });
       subjectsCopy.push({ ...newSubject, students: [] });
+      this.setState({ subjects: subjectsCopy });
+   };
+
+   newStudentHandler = (code, newStudent) => {
+      const subjectsCopy = this.state.subjects.map((subject) => {
+         return {
+            ...subject,
+            credits: [...subject.credits],
+            students: subject.students.map((student) => {
+               return {
+                  ...student,
+               };
+            }),
+         };
+      });
+      subjectsCopy.forEach((subject, index) => {
+         if (code === subject.code) {
+            subject.students.push({
+               name: newStudent.name,
+               rollNo: newStudent.rollNo,
+               isAdded: false,
+               isDereg: false,
+            });
+         }
+      });
       this.setState({ subjects: subjectsCopy });
    };
 
@@ -342,7 +444,7 @@ class App extends React.Component {
                <Switch>
                   {/* <Subjects/> */}
                   <Route
-                     path="/"
+                     path="/subjects"
                      exact
                      render={() => (
                         <Subjects
@@ -354,19 +456,18 @@ class App extends React.Component {
                   />
                   <Route
                      path="/deregAnalysis"
-                     render={() => (
-                        <DeregAnalysis
-                           subjects={subjectsCopy}
-                           studentClick={this.studentClickHandler}
-                        />
-                     )}
+                     render={() => <DeregAnalysis subjects={subjectsCopy} />}
                   />
                   <Route
-                     path="/:id"
+                     path="/subjects/:code"
                      render={() => (
                         <Students
                            subjects={subjectsCopy}
-                           studentClick={this.studentClickHandler}
+                           studentDereg={this.studentDeregHandler}
+                           studentAdd={this.studentAddHandler}
+                           addAllStudents={this.addAllStudents}
+                           minusAllStudents={this.minusAllStudents}
+                           newStudent = {this.newStudentHandler}
                         />
                      )}
                   />
