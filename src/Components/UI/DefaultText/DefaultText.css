@@ -1,0 +1,13 @@
+.DefaultText{
+   color: #aaa;
+
+   width: 80%;
+   max-width: 500px;
+   margin:  60px auto 0;
+   text-align: center;
+   min-height: 50px;
+   padding: 12px 10px;
+   border: 2px solid #eee;
+   box-sizing: border-box;
+   box-shadow: 2px 3px 6px #ccc;
+}

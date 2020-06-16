@@ -9,6 +9,7 @@
    padding: 10px;
    position: relative;
    transition: 0.4s transform;
+   cursor: pointer;
 }
 
 .SubjectBlocks:hover {
@@ -31,7 +32,7 @@
 .InfoBlocks {
    width: 100%;
    border: 1px solid black;
-   background-color: #ffffffcc;
+   background-color: #ffffffea;
    position: absolute;
    padding: 10px;
    box-sizing: border-box;
@@ -47,6 +48,7 @@
    .SubjectBlocks {
       display: inline-block;
       width: 42%;
+      min-width: unset;
       height: 250px;
       margin: 10px;
       border: 2px solid #eee;
@@ -55,6 +57,7 @@
       padding: 10px;
       position: relative;
       transition: 0.4s transform;
+      cursor: pointer;
    }
 
    .InfoBlocks {
@@ -79,6 +82,7 @@
    margin: 20px auto;
    height: 150px;
    position: relative;
+   cursor: pointer;
 }
 
 .ImgTiles {
@@ -122,6 +126,7 @@
    margin: 20px 0;
    height: 100px;
    position: relative;
+   cursor: pointer;
 }
 
 .ImgList {

@@ -1,0 +1,21 @@
+.PageNotFound {
+   margin-top: 80px;
+   font-size: 18px;
+   color: #888;
+   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+   display: flex;
+   height: calc(60vh);
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   padding: 40px;
+   text-align: center;
+}
+
+.PageNotFound a{
+   display: block;
+   padding: 5px 10px;
+   font-size: 18px;
+   color: #888;
+   text-decoration: underline;
+}

@@ -8,13 +8,45 @@
    box-sizing: border-box;
    margin: 10px 0;
    background-color: #c6f3fb;
+   display: flex;
+   align-items: center;
+
 }
 
 .SideBarLinks a{
    color: rgb(33, 64, 78);
-   display: inline-block;
+   display: flex;
+   align-items: center;
    height: 40px;
    width: 100%;
    box-sizing: border-box;
    text-decoration: none;
+}
+
+@media screen and (max-width : 500px){
+   .SideBarLinks{
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      background-color: rgb(18, 34, 49);
+      height: 50px;
+      line-height: 40px;
+      width: 50px;
+      padding: 5px 10px;
+      box-shadow: 2px 2px 3px #333;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: 0.5s width;
+   }
+
+   .SideBarLinks:hover{
+      width: 200px;
+   }
+
+   .SideBarLinks a{
+      display: flex;
+      font-size: 18px;
+      color: inherit;
+      line-height: 40px;
+   }
 }

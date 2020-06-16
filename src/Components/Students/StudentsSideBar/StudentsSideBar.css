@@ -1,0 +1,9 @@
+.StudentsSideBar {
+   position: fixed;
+   top: 70px;
+   left: 0px;
+   width: 19%;
+   height: 100vh;
+   float: left;
+   padding: 5px;
+}

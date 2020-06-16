@@ -13,8 +13,8 @@ const navigationItems = (props) => {
          <NavigationItem hide={props.hide} exact={true} linkTo="/subjects">
             Subjects
          </NavigationItem>
-         <NavigationItem hide={props.hide} exact={true} linkTo="/subjects">
-            Students
+         <NavigationItem hide={props.hide} exact={true} linkTo="/pagenotfound">
+            Dummy
          </NavigationItem>
       </div>
    );

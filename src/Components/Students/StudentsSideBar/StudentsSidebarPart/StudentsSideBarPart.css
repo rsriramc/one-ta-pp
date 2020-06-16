@@ -1,0 +1,29 @@
+.StudentsSideBarPart{
+   height: 44px;
+   border: 2px solid #eee;
+   box-shadow: 2px 2px 4px #ccc;
+   line-height: 30px;
+   padding: 5px 10px;
+   background-color: #c6f3fb;
+   align-items: center;
+   color: rgb(33, 64, 78);
+   display: flex;
+   width: calc(100% - 10px);
+   margin: 4px 10px;
+   box-sizing: border-box;
+   text-decoration: none;
+}
+
+.Left{
+   display: inline-block;
+   width: 75%;
+   padding-right: 20px;
+   box-sizing: border-box;
+   max-width: calc(100% - 70px);
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+.Right{
+   width: 70px;
+}

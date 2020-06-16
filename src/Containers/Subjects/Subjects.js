@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import classes from "./Subjects.css";
+import Logo from '../../Assets/Images/subjects.jpg';
 
 import Wrap from "../../hoc/Wrap/Wrap";
 import Subject from "../../Components/Subject/Subject";
@@ -9,7 +10,6 @@ import StickTop from "../../Components/UI/StickTop/StickTop";
 import SideBar from "../../Components/UI/SideBar/SideBar";
 import BackDrop from "../../Components/UI/BackDrop/BackDrop";
 import InputModal from "../../Components/UI/InputModal/InputModal";
-import subject from "../../Components/Subject/Subject";
 
 class Subjects extends React.Component {
    state = {
@@ -75,19 +75,20 @@ class Subjects extends React.Component {
                code={subject.code}
                credits={[...subject.credits]}
                sem={subject.sem}
+               logo={subject.logo}
             />
          );
       });
       return (
          <Wrap>
             <div className={classes.SideBar}>
-               {/* Links<br/>
-               Deregistation Analysis<br />
-               Recent */}
                <SideBar place="Subjects" />
             </div>
             <div className={classes.Subjects}>
                <StickTop
+                  bg={Logo}
+                  view={this.state.display[0]}
+                  displayChange
                   top={64}
                   height={150}
                   changeStyle={() => this.changeDisplayStyle()}

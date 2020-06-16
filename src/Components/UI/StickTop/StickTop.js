@@ -7,6 +7,12 @@ const stickTop = (props) => {
       <div
          className={classes.StickTop}
          style={{
+            backgroundImage:
+               "linear-gradient(to right bottom,rgba(255, 255, 255, 0.500),rgba(216, 216, 216, 0.513)), url(" +
+               props.bg +
+               ")",
+            backgroundSize: 'cover',
+            backgroundPosition: '40% 50%',
             top: -props.height + props.top + "px",
             marginTop: props.top + "px",
             paddingTop: props.height + "px",
@@ -17,12 +23,20 @@ const stickTop = (props) => {
             // style={{ marginTop: props.height + "px" }}
          >
             {props.children}
-            <div className={classes.DisplayStyle} onClick={props.changeStyle}>
-               <div className={classes.Inside}></div>
-               <div className={classes.Inside}></div>
-               <div className={classes.Inside}></div>
-               <div className={classes.Inside}></div>
-            </div>
+            {props.displayChange ? (
+               <div className={classes.StyleChange}>
+                  {props.view}
+                  <div
+                     className={classes.DisplayStyle}
+                     onClick={props.changeStyle}
+                  >
+                     <div className={classes["Inside" + props.view]}></div>
+                     <div className={classes["Inside" + props.view]}></div>
+                     <div className={classes["Inside" + props.view]}></div>
+                     <div className={classes["Inside" + props.view]}></div>
+                  </div>
+               </div>
+            ) : null}
          </div>
       </div>
    );

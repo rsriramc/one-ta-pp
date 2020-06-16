@@ -3,20 +3,28 @@
    background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.726),rgba(216, 216, 216, 0.513)), url(../../../Assets/Images/deregAnalysis.jpg
    );
    background-position: 50% 40%;
+   background-size: cover;
    box-sizing: border-box;
    z-index: 10;
    padding: 10px;
    /* margin: 20px; */
    font-size: 24px;
    font-weight: bold;
-   color: rgb(7, 42, 71);
+   color: white;
+   text-shadow: 2px 2px 4px #111;
 }
 
 .Content{
-   mix-blend-mode: multiply;
+}
+
+.StyleChange{
+   line-height: 32px;
+   font-size: 70%;
+   float: right;
 }
 
 .DisplayStyle{
+   margin-left: 10px;
    height: 32px;
    width: 32px;
    float: right;
@@ -25,11 +33,39 @@
    flex-wrap: wrap;
    justify-content: space-evenly;
    align-items: center;
+   overflow: hidden;
 }
 
-.DisplayStyle .Inside{
+.DisplayStyle .InsideBlocks{
    width: 40%;
    height: 40%;
-   background-color: rgb(7, 42, 71);
+   background-color: rgb(255, 255, 255);
+   box-shadow: 2px 2px 4px #222;
+   box-sizing: border-box;
+}
+
+.DisplayStyle .InsideTiles:nth-child(odd){
+   display: none;
+}
+
+
+.DisplayStyle .InsideTiles{
+   width: 80%;
+   height: 40%;
+   background-color: rgb(255, 255, 255);
+   box-shadow: 2px 2px 4px #222;
+   box-sizing: border-box;
+}
+
+.DisplayStyle .InsideList:last-child{
+   display: none;
+}
+
+
+.DisplayStyle .InsideList{
+   width: 80%;
+   height: 20%;
+   background-color: rgb(255, 255, 255);
+   box-shadow: 2px 2px 4px #222;
    box-sizing: border-box;
 }

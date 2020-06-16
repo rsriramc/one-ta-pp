@@ -5,6 +5,8 @@ import Wrap from "../../hoc/Wrap/Wrap";
 import SideBar from "../UI/SideBar/SideBar";
 import StickTop from '../UI/StickTop/StickTop';
 
+import deregAna from '../../Assets/Images/deregAnalysis2.jpg';
+
 import Dereg from './Dereg/Dereg';
 
 const deregAnalysis = (props) => {
@@ -39,7 +41,7 @@ const deregAnalysis = (props) => {
             <SideBar />
          </div>
          <div className={classes.DeregAnalysis}>
-            <StickTop top={64} stickat={-80} height={150}>
+            <StickTop top={64} stickat={-80} height={150} bg={deregAna}>
                De-Registration Analysis
             </StickTop>
             {deregBars}

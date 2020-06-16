@@ -11,7 +11,6 @@ const subject = (props) => {
          4. semester of the course
    */
    const styleType = props.display;
-   
    return (
       <div
          className={classes["Subject" + styleType]}
@@ -19,12 +18,13 @@ const subject = (props) => {
             props.clicked();
          }}
       >
-         <div className={classes["Img" + styleType]}>
-         </div>
+         <div
+            className={classes["Img" + styleType]}
+            style={{ backgroundImage: "url(" + props.logo + ")" }}
+         ></div>
          <div className={classes["Info" + styleType]}>
             <span className={classes["Code" + styleType]}>{props.code}</span>
-            {props.title}{" "}
-            <br className={classes["br" + styleType]}/>
+            {props.title} <br className={classes["br" + styleType]} />
             Semester : {props.sem} <br />
             L-T-P : [{props.credits.join(" , ")}]
          </div>

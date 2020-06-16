@@ -3,13 +3,15 @@ import React from "react";
 import classes from "./Students.css";
 import StickTop from "../UI/StickTop/StickTop";
 import Wrap from "../../hoc/Wrap/Wrap";
-import SideBar from "../UI/SideBar/SideBar";
+import StudentsSideBar from "./StudentsSideBar/StudentsSideBar";
 
 import { withRouter } from "react-router-dom";
 
 import Student from "./Student/Student";
 import BackDrop from "../UI/BackDrop/BackDrop";
 import InputModal from "../UI/InputModal/InputModal";
+import DefaultText from "../UI/DefaultText/DefaultText";
+import PageNotFound from '../UI/PageNotFound/PageNotFound';
 
 class Students extends React.Component {
    state = {
@@ -22,13 +24,33 @@ class Students extends React.Component {
       isTheFormValid: false,
    };
 
-   componentWillMount() {
+   componentWillMount = () => {
       let subjectIndex = null;
       this.props.subjects.forEach((subject, index) => {
          if (subject.code === this.props.match.params.code) {
             subjectIndex = index;
-            if (this.state.presentSubjectIndex === null)
+            if (
+               this.state.presentSubjectIndex === null ||
+               (this.state.presentSubjectIndex &&
+                  this.state.presentSubjectIndex !== subjectIndex)
+            )
                this.setState({ presentSubjectIndex: subjectIndex });
+         }
+      });
+   }
+
+   componentDidUpdate=()=> {
+      let subjectIndex = null;
+      this.props.subjects.forEach((subject, index) => {
+         if (subject.code === this.props.match.params.code) {
+            subjectIndex = index;
+            if (
+               this.state.presentSubjectIndex === null ||
+               (this.state.presentSubjectIndex !== null &&
+                  this.state.presentSubjectIndex !== subjectIndex)
+            ) {
+               this.setState({ presentSubjectIndex: subjectIndex });
+            }
          }
       });
    }
@@ -70,6 +92,9 @@ class Students extends React.Component {
       let studentsAddedList = [];
       let studentsNotAddedList = [];
       let studentsDeregList = [];
+      if (this.state.presentSubjectIndex === null) {
+         return <PageNotFound />;
+      }
       this.props.subjects[this.state.presentSubjectIndex].students.forEach(
          (student) => {
             if (!student.isDereg) {
@@ -190,10 +215,16 @@ class Students extends React.Component {
                   float: "left",
                }}
             >
-               <SideBar place="Students" />
+               <StudentsSideBar subjects={this.props.subjects} />
             </div>
+
             <div className={classes.Students}>
-               <StickTop top={64} stickat={-80} height={150}>
+               <StickTop
+                  bg={this.props.subjects[this.state.presentSubjectIndex].logo}
+                  top={64}
+                  stickat={-80}
+                  height={150}
+               >
                   Students <br />
                   {this.props.subjects[this.state.presentSubjectIndex].title +
                      " (" +
@@ -201,37 +232,53 @@ class Students extends React.Component {
                      ")"}
                </StickTop>
                <br />
-               Added Students:
-               <button
-                  disabled={!addAllButton}
-                  onClick={() => {
-                     this.props.minusAllStudents(
-                        this.props.subjects[this.state.presentSubjectIndex].code
-                     );
-                  }}
-                  className={classes.MinusAll}
-               >
-                  Remove All The Added Participants
-               </button>
-               {studentsAddedList}
-               <br />
-               Not Added Students:
-               <button
-                  disabled={!removeAllButton}
-                  onClick={() => {
-                     this.props.addAllStudents(
-                        this.props.subjects[this.state.presentSubjectIndex].code
-                     );
-                  }}
-                  className={classes.AddAll}
-               >
-                  Add All The Below Participants
-               </button>
-               {studentsNotAddedList}
-               <br />
-               De-Registered Students:
-               {studentsDeregList}
+               {this.props.subjects[this.state.presentSubjectIndex].students
+                  .length ? (
+                  <Wrap>
+                     Added Students:
+                     <button
+                        disabled={!addAllButton}
+                        onClick={() => {
+                           this.props.minusAllStudents(
+                              this.props.subjects[
+                                 this.state.presentSubjectIndex
+                              ].code
+                           );
+                        }}
+                        className={classes.MinusAll}
+                     >
+                        Remove All The Added Participants
+                     </button>
+                     {studentsAddedList}
+                     <br />
+                     Not Added Students:
+                     <button
+                        disabled={!removeAllButton}
+                        onClick={() => {
+                           this.props.addAllStudents(
+                              this.props.subjects[
+                                 this.state.presentSubjectIndex
+                              ].code
+                           );
+                        }}
+                        className={classes.AddAll}
+                     >
+                        Add All The Below Participants
+                     </button>
+                     {studentsNotAddedList}
+                     <br />
+                     De-Registered Students:
+                     {studentsDeregList}
+                  </Wrap>
+               ) : (
+                  <DefaultText>
+                     There are no students registered in this subject.
+                     <br />
+                     Click on the +New Button to Add New Students.
+                  </DefaultText>
+               )}
             </div>
+
             <div
                className={classes.AddNew}
                onClick={() => {

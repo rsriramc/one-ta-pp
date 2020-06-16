@@ -5,11 +5,21 @@ import "./App.css";
 import Wrap from "./hoc/Wrap/Wrap";
 import Content from "./Components/Content/Content";
 
+import Algo from './Assets/Images/algo.png';
+import DAnaly from './Assets/Images/dataAnalysis.png';
+import DeviceMan from './Assets/Images/devicemanagement.png';
+import SoftEng from './Assets/Images/software.jpg';
+import CompArch from './Assets/Images/comparch.jpg';
+import GeneralImg from './Assets/Images/default.jpg';
+import CompNetwork from "./Assets/Images/network.png";
+
 import Subjects from "./Containers/Subjects/Subjects";
 import Students from "./Components/Students/Students";
 import DeregAnalysis from "./Components/DeregAnalysis/DeregAnalysis";
 
 import { Route, Switch } from "react-router-dom";
+import Home from "./Containers/Home/Home";
+import PageNotFound from "./Components/UI/PageNotFound/PageNotFound";
 
 // import axios from "axios";
 
@@ -21,6 +31,7 @@ class App extends React.Component {
          {
             title: "Algorithms",
             code: "CS20012",
+            logo: Algo,
             credits: [3, 2, 0],
             sem: 3,
             students: [
@@ -65,6 +76,7 @@ class App extends React.Component {
          {
             title: "Data Analysis",
             code: "CS30001",
+            logo : DAnaly,
             credits: [4, 1, 0],
             sem: 6,
             students: [
@@ -107,8 +119,9 @@ class App extends React.Component {
             ],
          },
          {
-            title: "Network Theory",
+            title: "Device Management",
             code: "CS30048",
+            logo: DeviceMan,
             credits: [3, 1, 2],
             sem: 6,
             students: [
@@ -151,8 +164,9 @@ class App extends React.Component {
             ],
          },
          {
-            title: "Network Theory",
+            title: "Software Engineering",
             code: "CS30096",
+            logo: SoftEng,
             credits: [3, 1, 2],
             sem: 6,
             students: [
@@ -195,8 +209,9 @@ class App extends React.Component {
             ],
          },
          {
-            title: "Network Theory",
+            title: "Computer Architecture",
             code: "CS30045",
+            logo : CompArch,
             credits: [3, 1, 2],
             sem: 6,
             students: [
@@ -241,6 +256,7 @@ class App extends React.Component {
          {
             title: "Network Theory",
             code: "CS30012",
+            logo : CompNetwork,
             credits: [3, 1, 2],
             sem: 6,
             students: [
@@ -397,7 +413,7 @@ class App extends React.Component {
             }),
          };
       });
-      subjectsCopy.push({ ...newSubject, students: [] });
+      subjectsCopy.push({ ...newSubject, logo:GeneralImg, students: [] });
       this.setState({ subjects: subjectsCopy });
    };
 
@@ -443,6 +459,7 @@ class App extends React.Component {
             <Content>
                <Switch>
                   {/* <Subjects/> */}
+                  <Route path="/" exact render={() => <Home />} />
                   <Route
                      path="/subjects"
                      exact
@@ -467,8 +484,13 @@ class App extends React.Component {
                            studentAdd={this.studentAddHandler}
                            addAllStudents={this.addAllStudents}
                            minusAllStudents={this.minusAllStudents}
-                           newStudent = {this.newStudentHandler}
+                           newStudent={this.newStudentHandler}
                         />
+                     )}
+                  />
+                  <Route
+                     render={() => (
+                        <PageNotFound/>
                      )}
                   />
                </Switch>
