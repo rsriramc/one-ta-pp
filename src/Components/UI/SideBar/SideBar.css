@@ -34,6 +34,16 @@
       float: left;
       z-index: 20;
    }
+   .SideBar {
+      position: fixed;
+      top: unset;
+      bottom: 50px;
+      left: 10px;
+      width: 40px;
+      height: auto;
+      float: left;
+      z-index: 20;
+   }
    .icons {
       font-size: 30px;
       margin-right: 10px;

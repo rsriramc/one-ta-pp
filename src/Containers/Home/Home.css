@@ -27,9 +27,11 @@
    animation-name: spread;
    animation-fill-mode: forwards;
    transform-origin: center;
+   z-index: -10;
 }
 
 .SpreadTwo {
+   z-index: -10;
    width: 10px;
    height: 10px;
    border-radius: 50%;
@@ -49,6 +51,10 @@
 
 .LogoContainer img {
    width: 100%;
+}
+
+.Home button{
+   z-index: 500;
 }
 
 @keyframes spread {

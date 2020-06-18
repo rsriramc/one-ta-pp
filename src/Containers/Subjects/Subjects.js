@@ -10,6 +10,14 @@ import StickTop from "../../Components/UI/StickTop/StickTop";
 import SideBar from "../../Components/UI/SideBar/SideBar";
 import BackDrop from "../../Components/UI/BackDrop/BackDrop";
 import InputModal from "../../Components/UI/InputModal/InputModal";
+import DefaultText from '../../Components/UI/DefaultText/DefaultText';
+
+import key from '../../Components/UI/keygenerator';
+
+import { faChartBar, faClock, faBook } from "@fortawesome/free-solid-svg-icons";
+
+import * as actionTypes from '../../Store/actions';
+import { connect } from 'react-redux';
 
 class Subjects extends React.Component {
    state = {
@@ -26,7 +34,7 @@ class Subjects extends React.Component {
 
    addSubject = (newSubject) => {
       if (this.state.isTheFormValid) {
-         this.props.addSubject({ ...newSubject });
+         this.props.addSubjectHandler({ ...newSubject });
          this.setState({ isAddingSubject: false });
       }
    };
@@ -46,9 +54,9 @@ class Subjects extends React.Component {
       this.isTheNewSubjectValid({...this.state.newSubjectDetails});
    };
 
-   subjectClickHandler = (key) => {
+   subjectClickHandler = (code) => {
       this.props.subjects.forEach((value, index) => {
-         if (value.code === key) {
+         if (value.code === code) {
             this.props.history.push("/subjects/" + value.code);
          }
       });
@@ -71,7 +79,7 @@ class Subjects extends React.Component {
                }}
                display={this.state.display[0]}
                title={subject.title}
-               key={subject.code}
+               key={key()}
                code={subject.code}
                credits={[...subject.credits]}
                sem={subject.sem}
@@ -82,9 +90,36 @@ class Subjects extends React.Component {
       return (
          <Wrap>
             <div className={classes.SideBar}>
-               <SideBar place="Subjects" />
+               <SideBar
+                  place="Subjects"
+                  items={[
+                     {
+                        linkTo: "/subjects",
+                        descrip: "Subjects",
+                        icon: faBook,
+                        prefer: "Main",
+                     },
+                     {
+                        linkTo: "/deregAnalysis",
+                        descrip: "Dereg.. Analysis",
+                        icon: faChartBar,
+                        prefer: "Main",
+                     },
+                     {
+                        linkTo: "/recent",
+                        descrip: "Recent",
+                        icon: faClock,
+                        prefer: "Main",
+                     },
+                     {
+                        linkTo: "/recent",
+                        descrip: "Recent",
+                        prefer: "Side",
+                     },
+                  ]}
+               />
             </div>
-            <div className={classes.Subjects}>
+            <div className={classes["Subjects"]}>
                <StickTop
                   bg={Logo}
                   view={this.state.display[0]}
@@ -95,7 +130,19 @@ class Subjects extends React.Component {
                >
                   Subjects
                </StickTop>
-               <div className={classes.SubjectContent}>{subjects}</div>
+               <div
+                  className={classes["SubjectContent" + this.state.display[0]]}
+               >
+                  {this.props.subjects.length ? (
+                     subjects
+                  ) : (
+                     <DefaultText>
+                        There are no subjects.
+                        <br />
+                        Click on the +New Button to Add New Subjects.
+                     </DefaultText>
+                  )}
+               </div>
                <div
                   className={classes.AddNew}
                   onClick={() => {
@@ -117,7 +164,7 @@ class Subjects extends React.Component {
             />
             <InputModal
                show={this.state.isAddingSubject}
-               submitText = "Add New Subject"
+               submitText="Add New Subject"
                submit={() => {
                   this.addSubject({
                      ...this.state.newSubjectDetails,
@@ -150,4 +197,20 @@ class Subjects extends React.Component {
    };
 }
 
-export default withRouter(Subjects);
+const mapStateToProps = state => {
+   return {
+      subjects : state.subjects,
+   };
+}
+
+const mapDispatchToProps = dispatch => {
+   return {
+      addSubjectHandler: (newSubject) =>
+         dispatch({
+            type: actionTypes.ADD_SUBJECT,
+            payLoad: { newSubject: newSubject },
+         }),
+   };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Subjects));

@@ -21,6 +21,16 @@
    line-height: 32px;
    font-size: 70%;
    float: right;
+   cursor: pointer;
+}
+
+.Delete{
+   line-height: 32px;
+   font-size: 70%;
+   float: right;
+   cursor: pointer;
+   border: 2px solid black;
+   background-color: rgba(100, 99, 99, 0.418);
 }
 
 .DisplayStyle{

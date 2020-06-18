@@ -17,7 +17,7 @@ const studentsSideBar = (props) => {
          </StudentsSideBarPart>
       );
    });
-   return <div className={classes.StudentsSideBar}>{subjectsList}</div>;
+   return <div className={classes.StudentsSideBar}><h2>Subjects:</h2>{subjectsList}</div>;
 };
 
 export default withRouter(studentsSideBar);

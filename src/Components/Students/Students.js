@@ -11,7 +11,12 @@ import Student from "./Student/Student";
 import BackDrop from "../UI/BackDrop/BackDrop";
 import InputModal from "../UI/InputModal/InputModal";
 import DefaultText from "../UI/DefaultText/DefaultText";
-import PageNotFound from '../UI/PageNotFound/PageNotFound';
+import PageNotFound from "../UI/PageNotFound/PageNotFound";
+
+import key from '../UI/keygenerator';
+
+import * as actionTypes from "../../Store/actions";
+import { connect } from "react-redux";
 
 class Students extends React.Component {
    state = {
@@ -24,22 +29,7 @@ class Students extends React.Component {
       isTheFormValid: false,
    };
 
-   componentWillMount = () => {
-      let subjectIndex = null;
-      this.props.subjects.forEach((subject, index) => {
-         if (subject.code === this.props.match.params.code) {
-            subjectIndex = index;
-            if (
-               this.state.presentSubjectIndex === null ||
-               (this.state.presentSubjectIndex &&
-                  this.state.presentSubjectIndex !== subjectIndex)
-            )
-               this.setState({ presentSubjectIndex: subjectIndex });
-         }
-      });
-   }
-
-   componentDidUpdate=()=> {
+   detectIndex = () => {
       let subjectIndex = null;
       this.props.subjects.forEach((subject, index) => {
          if (subject.code === this.props.match.params.code) {
@@ -48,17 +38,23 @@ class Students extends React.Component {
                this.state.presentSubjectIndex === null ||
                (this.state.presentSubjectIndex !== null &&
                   this.state.presentSubjectIndex !== subjectIndex)
-            ) {
+            )
                this.setState({ presentSubjectIndex: subjectIndex });
-            }
          }
       });
-   }
+   };
+
+   componentWillMount = () => {
+      this.detectIndex();
+   };
+
+   componentDidUpdate = () => {
+      this.detectIndex();
+   };
 
    newStudent = (newStudent) => {
       if (this.state.isTheFormValid) {
-         console.log(newStudent);
-         this.props.newStudent(
+         this.props.newStudentHandler(
             this.props.subjects[this.state.presentSubjectIndex].code,
             {
                ...newStudent,
@@ -86,6 +82,12 @@ class Students extends React.Component {
       this.isTheNewStudentValid({ ...this.state.newStudentDetails });
    };
 
+   deleteSubject = (code) => {
+      console.log("deleting");
+      this.props.history.push('/subjects/');
+      this.props.deleteSubjectHandler(code);
+   };
+
    render() {
       let removeAllButton = true;
       let addAllButton = true;
@@ -96,96 +98,62 @@ class Students extends React.Component {
          return <PageNotFound />;
       }
       this.props.subjects[this.state.presentSubjectIndex].students.forEach(
-         (student) => {
+         (student, index) => {
+            let studentJSX = (
+               <Student
+                  key={key()}
+                  name={student.name}
+                  rollNo={student.rollNo}
+                  isDereg={student.isDereg}
+                  isAdded={student.isAdded}
+                  deregClick={() =>
+                     this.props.studentDeregHandler(
+                        this.props.subjects[this.state.presentSubjectIndex]
+                           .code,
+                        student.name
+                     )
+                  }
+                  addClick={() =>
+                     this.props.studentAddHandler(
+                        this.props.subjects[this.state.presentSubjectIndex]
+                           .code,
+                        student.name
+                     )
+                  }
+                  deleteClick={() =>
+                     this.props.deleteStudentHandler(
+                        this.props.subjects[this.state.presentSubjectIndex]
+                           .code,
+                        student.name
+                     )
+                  }
+               />
+            );
             if (!student.isDereg) {
-               if (student.isAdded) {
-                  studentsAddedList.push(
-                     <Student
-                        key={student.name}
-                        name={student.name}
-                        rollNo={student.rollNo}
-                        isDereg={student.isDereg}
-                        isAdded={student.isAdded}
-                        deregClick={() =>
-                           this.props.studentDereg(
-                              this.props.subjects[
-                                 this.state.presentSubjectIndex
-                              ].code,
-                              student.name
-                           )
-                        }
-                        addClick={() =>
-                           this.props.studentAdd(
-                              this.props.subjects[
-                                 this.state.presentSubjectIndex
-                              ].code,
-                              student.name
-                           )
-                        }
-                     />
-                  );
-               }
-               if (!student.isAdded) {
-                  studentsNotAddedList.push(
-                     <Student
-                        key={student.name}
-                        name={student.name}
-                        rollNo={student.rollNo}
-                        isDereg={student.isDereg}
-                        isAdded={student.isAdded}
-                        deregClick={() =>
-                           this.props.studentDereg(
-                              this.props.subjects[
-                                 this.state.presentSubjectIndex
-                              ].code,
-                              student.name
-                           )
-                        }
-                        addClick={() =>
-                           this.props.studentAdd(
-                              this.props.subjects[
-                                 this.state.presentSubjectIndex
-                              ].code,
-                              student.name
-                           )
-                        }
-                     />
-                  );
-               }
-            } else if (student.isDereg)
-               studentsDeregList.push(
-                  <Student
-                     key={student.name}
-                     name={student.name}
-                     rollNo={student.rollNo}
-                     isDereg={student.isDereg}
-                     isAdded={student.isAdded}
-                     deregClick={() =>
-                        this.props.studentDereg(
-                           this.props.subjects[this.state.presentSubjectIndex]
-                              .code,
-                           student.name
-                        )
-                     }
-                     addClick={() =>
-                        this.props.studentAdd(
-                           this.props.subjects[this.state.presentSubjectIndex]
-                              .code,
-                           student.name
-                        )
-                     }
-                  />
-               );
+               if (student.isAdded) studentsAddedList.push(studentJSX);
+               else if (!student.isAdded) studentsNotAddedList.push(studentJSX);
+            } else if (student.isDereg) studentsDeregList.push(studentJSX);
          }
       );
 
       if (studentsNotAddedList.length <= 0) {
          removeAllButton = false;
-         studentsNotAddedList = (
-            <div className={classes.Nil}>
-               All students has been added to the platform.
-            </div>
-         );
+         if (
+            this.props.subjects[this.state.presentSubjectIndex].students
+               .length === studentsDeregList.length
+         )
+            studentsNotAddedList = (
+               <div className={classes.Nil}>
+                  All students has been de-registered.
+               </div>
+            );
+         else
+            studentsNotAddedList = (
+               <div className={classes.Nil}>
+                  All the Registered students has been been added to the
+                  platform.
+               </div>
+            );
       }
       if (studentsDeregList.length <= 0) {
          studentsDeregList = (
@@ -224,6 +192,13 @@ class Students extends React.Component {
                   top={64}
                   stickat={-80}
                   height={150}
+                  deletable
+                  deletableItem="Subject"
+                  deleteClick={() =>
+                     this.deleteSubject(
+                        this.props.subjects[this.state.presentSubjectIndex].code
+                     )
+                  }
                >
                   Students <br />
                   {this.props.subjects[this.state.presentSubjectIndex].title +
@@ -326,4 +301,53 @@ class Students extends React.Component {
    }
 }
 
-export default withRouter(Students);
+const mapStateToProps = (state) => {
+   return {
+      subjects: state.subjects,
+   };
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      studentAddHandler: (code, name) =>
+         dispatch({
+            type: actionTypes.ADD_STUDENT,
+            payLoad: { code: code, name: name },
+         }),
+      studentDeregHandler: (code, name) =>
+         dispatch({
+            type: actionTypes.DEREG_STUDENT,
+            payLoad: { code: code, name: name },
+         }),
+      addAllStudents: (code) =>
+         dispatch({
+            type: actionTypes.ADD_ALL_STUDENTS,
+            payLoad: { code: code },
+         }),
+      minusAllStudents: (code) =>
+         dispatch({
+            type: actionTypes.MINUS_ALL_STUDENTS,
+            payLoad: { code: code },
+         }),
+      newStudentHandler: (code, newStudent) =>
+         dispatch({
+            type: actionTypes.ADD_NEW_STUDENT,
+            payLoad: { code: code, newStudent: newStudent },
+         }),
+      deleteStudentHandler: (code, name) =>
+         dispatch({
+            type: actionTypes.DELETE_STUDENT,
+            payLoad: { code: code, name: name },
+         }),
+      deleteSubjectHandler: (code) =>
+         dispatch({
+            type: actionTypes.DELETE_SUBJECT,
+            payLoad: { code: code},
+         }),
+   };
+};
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(withRouter(Students));

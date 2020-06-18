@@ -2,6 +2,9 @@ import React from "react";
 
 import classes from "./StickTop.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDumpster } from "@fortawesome/free-solid-svg-icons";
+
 const stickTop = (props) => {
    return (
       <div
@@ -11,13 +14,19 @@ const stickTop = (props) => {
                "linear-gradient(to right bottom,rgba(255, 255, 255, 0.500),rgba(216, 216, 216, 0.513)), url(" +
                props.bg +
                ")",
-            backgroundSize: 'cover',
-            backgroundPosition: '40% 50%',
+            backgroundSize: "cover",
+            backgroundPosition: "40% 50%",
             top: -props.height + props.top + "px",
             marginTop: props.top + "px",
             paddingTop: props.height + "px",
          }}
       >
+         {props.deletable ? (
+            <div className={classes.Delete} onClick={props.deleteClick}>
+               <FontAwesomeIcon icon={faDumpster} />
+               Delete {props.deletableItem}
+            </div>
+         ) : null}
          <div
             className={classes.Content}
             // style={{ marginTop: props.height + "px" }}

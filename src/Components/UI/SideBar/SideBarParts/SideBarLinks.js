@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 
 const sideBarLinks = (props) => {
    return (
-      <div className={classes.SideBarLinks}>
-         <NavLink to={props.link}>{props.children}</NavLink>
+      <div className={classes["SideBarLinks" + props.prefer]}>
+         <NavLink className={classes.SideBarLink} to={props.link} activeClassName={classes.active}>{props.children}</NavLink>
       </div>
    );
 };

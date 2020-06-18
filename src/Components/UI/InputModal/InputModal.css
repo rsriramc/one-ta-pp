@@ -17,13 +17,15 @@
 
 .FormContainer{
    width: 100%;
+   border: 2px solid black;
+   padding: 10px;
 }
 
 .FormContainer label{
    display: block;
    margin: 2px auto;
    font-size: 20px;
-   width: 80%;
+   width: 84%;
 }
 .FormContainer input{
    display: block;

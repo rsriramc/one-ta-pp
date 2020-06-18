@@ -29,6 +29,20 @@
    transform: scale(1.05);
 }
 
+.SubjectContentBlocks {
+}
+.SubjectContentTiles {
+   margin-top: 20px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+.SubjectContentList {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+
 @media screen and (max-width: 500px) {
    .Subjects {
       min-height: 110vh;

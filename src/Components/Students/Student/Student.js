@@ -9,6 +9,7 @@ import {
    faUser,
    faPlusSquare,
    faMinusSquare,
+   faDumpster,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -58,7 +59,16 @@ const student = (props) => {
                </Wrap>
             )}
          </button>
-         {/* <span className={classes.Name}>{props.name}</span> */}
+         {props.isDereg ? (
+            <button onClick={props.deleteClick} className={classes.Remove}>
+               <Wrap>
+                  <span className={classes.Icon}>
+                     <FontAwesomeIcon icon={faDumpster} />
+                  </span>
+                  Delete
+               </Wrap>
+            </button>
+         ) : null}
       </div>
    );
 };
