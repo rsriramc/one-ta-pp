@@ -1,0 +1,55 @@
+.Auth{
+   margin-top: 80px;
+   width: 90%;
+   max-width: 400px;
+   margin: 80px auto 0;
+   text-align: center;
+}
+
+.Valid{
+   border: none;
+   border-bottom: 2px solid grey;
+   display: block;
+   width: 90%;
+   max-width: 400px;
+   height: 30px;
+   margin: 10px auto;
+   text-align: left;
+   font-size: 16px;
+}
+.InValid{
+   border: none;
+   border-bottom:  2px solid red;
+   display: block;
+   width: 90%;
+   max-width: 400px;
+   height: 30px;
+   margin: 10px auto;
+   text-align: left;
+   font-size: 16px;
+}
+.Valid:focus{
+   outline: none;
+}
+.InValid:focus{
+   outline: none;
+}
+
+.Sign{
+   font-size: 14px;
+   border: 2px solid grey;
+   background-color: white;
+   padding: 5px 20px;
+
+}
+
+.Error{
+   color: red;
+   text-transform: capitalize;
+}
+
+.ParaLinks{
+   color: rgb(24, 22, 22);
+   text-decoration: underline;
+   cursor: pointer;
+}

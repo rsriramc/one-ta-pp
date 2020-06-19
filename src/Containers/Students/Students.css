@@ -1,0 +1,89 @@
+.Students {
+   min-height: 110vh;
+   width: 78%;
+   margin-left: 20vw;
+   background-image: url(../../Assets/Images/bg.png);
+   background-attachment: fixed;
+   background-position: top;
+   background-size: contain;
+   font-size: 18px;
+   margin-bottom: 60px;
+}
+
+
+.AddNew {
+   position: fixed;
+   bottom: 40px;
+   right: 40px;
+   background-color: rgb(231, 231, 231);
+   color: rgb(56, 105, 101);
+   box-shadow: 0px 0px 10px 2px rgb(77, 77, 77) inset;
+   height: 40px;
+   font-size: 24px;
+   padding: 2px 20px;
+   line-height: 36px;
+   border-radius: 20px;
+   cursor: pointer;
+   transition: 0.4s transform;
+}
+
+.AddNew:hover {
+   transform: scale(1.05);
+}
+
+.Students button:disabled{
+   color: black;
+   cursor: not-allowed;
+   background-color: #bbb;
+}
+
+.Nil{
+   display: block;
+   width: 80%;
+   max-width: 500px;
+   margin: 10px auto;
+   text-align: center;
+   background-color: #eeeeeeee;
+   padding: 10px;
+   border-radius: 2px;
+   box-shadow: 1px 1px 6px #aaa;
+}
+
+.MinusAll{
+   display: block;
+   width: 90%;
+   max-width: 400px;
+   font-size: 16px;
+   padding: 10px 12px ;
+   margin: 10px auto;
+   box-shadow: 1px 1px 6px #aaa;
+   background-color: salmon;
+   border: 2px solid #eee;
+}
+
+.AddAll{
+   display: block;
+   width: 90%;
+   max-width: 400px;
+   font-size: 16px;
+   padding: 10px 12px ;
+   margin: 10px auto;
+   box-shadow: 1px 1px 6px #aaa;
+   background-color: lightgreen;
+   border: 2px solid #eee;
+}
+
+@media screen and (max-width: 500px) {
+   .Students {
+      font-size: 18px;
+      min-height: 110vh;
+      width: 100%;
+      margin-left: 0;
+      background-image: url(../../Assets/Images/bg.png);
+      background-attachment: fixed;
+      background-position: top;
+      background-size: contain;
+      margin-bottom: 80px;
+      box-sizing: border-box;
+   }
+}
