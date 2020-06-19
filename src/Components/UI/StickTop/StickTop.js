@@ -11,7 +11,7 @@ const stickTop = (props) => {
          className={classes.StickTop}
          style={{
             backgroundImage:
-               "linear-gradient(to right bottom,rgba(255, 255, 255, 0.500),rgba(216, 216, 216, 0.513)), url(" +
+               "linear-gradient(to right bottom,rgba(255, 255, 255, 0.200),rgba(216, 216, 216, 0.200)), url(" +
                props.bg +
                ")",
             backgroundSize: "cover",

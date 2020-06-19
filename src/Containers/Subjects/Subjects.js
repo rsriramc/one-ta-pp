@@ -16,7 +16,7 @@ import key from '../../Components/UI/keygenerator';
 
 import { faChartBar, faClock, faBook } from "@fortawesome/free-solid-svg-icons";
 
-import * as actionTypes from '../../Store/actions';
+import * as actionTypes from '../../Store/actions/actionTypes';
 import { connect } from 'react-redux';
 
 class Subjects extends React.Component {

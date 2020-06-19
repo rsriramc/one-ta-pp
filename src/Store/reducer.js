@@ -1,4 +1,4 @@
-import * as actionTypes from "./actions.js";
+import * as actionTypes from "./actions/actionTypes.js";
 import * as images from "../Assets/Images/Images";
 
 const demoSubjects = [
@@ -91,6 +91,11 @@ demoSubjects.forEach((subject, index) => {
 });
 
 const initialState = {
+   authMode: "SIGNIN",
+   auth: null,
+   authError: null,
+   userId: null,
+   token: null,
    subjects: demoSubjects,
 };
 
@@ -212,6 +217,36 @@ const reducer = (state = initialState, action) => {
          return {
             ...state,
             subjects: [],
+         };
+
+      case actionTypes.AUTH_FAIL:
+         return {
+            ...state,
+            authError: action.payload.err,
+         };
+
+      case actionTypes.AUTH_SUCCESS:
+         return {
+            ...state,
+            userId: action.payload.authData.localId,
+            token: action.payload.authData.idToken,
+         };
+
+      case actionTypes.AUTH_SWITCH_MODE:
+         let signMode = state.authMode;
+         if (signMode === "SIGNIN") signMode = "SIGNUP";
+         else if (signMode === "SIGNUP") signMode = "SIGNIN";
+         return {
+            ...state,
+            authMode: signMode,
+         };
+
+      case actionTypes.AUTH_LOGOUT:
+         return {
+            ...state,
+            authMode: "SIGNIN",
+            userId: null,
+            token: null,
          };
 
       default:

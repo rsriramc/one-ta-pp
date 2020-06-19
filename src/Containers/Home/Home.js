@@ -2,8 +2,9 @@ import React from "react";
 
 import classes from "./Home.css";
 import Logo from "../../Assets/Images/tap.png";
+import Auth from '../Auth/Auth';
 
-import * as actionTypes from '../../Store/actions';
+import * as actionTypes from '../../Store/actions/actionTypes';
 import { connect } from 'react-redux';
 
 class Home extends React.Component {
@@ -15,8 +16,9 @@ class Home extends React.Component {
                <div className={classes.SpreadTwo}></div>
                <img src={Logo} alt="Logo" />
             </div> */}
-            <button onClick={this.props.loadDemoData}>Load Demo Data</button>
-            <button onClick={this.props.loadOwnData}>Load Own Data</button>
+            <Auth/>
+            {/* <button onClick={this.props.loadDemoData}>Load Demo Data</button>
+            <button onClick={this.props.loadOwnData}>Load Own Data</button> */}
          </div>
       );
    }
