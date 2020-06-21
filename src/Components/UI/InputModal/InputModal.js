@@ -7,10 +7,15 @@ const inputModal = (props) => {
    if (props.inputFields.length > 0)
       inputs = props.inputFields.map((inputField) => {
          return (
-            <div key={inputField.id}>
-               <label>{inputField.label}</label>
+            <div
+               key={inputField.id}
+               className={classes["Div" + inputField.size]}
+            >
+               <label className={classes["Label" + inputField.size]}>
+                  {inputField.label}
+               </label>
                <input
-                  className={classes.Input}
+                  className={classes["Input" + inputField.size]}
                   type={inputField.type}
                   value={inputField.value}
                   onChange={(e) => {

@@ -46,12 +46,6 @@ const deregAnalysis = (props) => {
                   icon: faChartBar,
                   prefer: "Main",
                },
-               {
-                  linkTo: "/recent",
-                  descrip: "Recent",
-                  icon: faClock,
-                  prefer: "Main",
-               },
             ]}
          />
          <div className={classes.DeregAnalysis}>

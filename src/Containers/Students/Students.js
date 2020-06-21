@@ -4,6 +4,7 @@ import classes from "./Students.css";
 import StickTop from "../../Components/UI/StickTop/StickTop";
 import Wrap from "../../hoc/Wrap/Wrap";
 import StudentsSideBar from "../../Components/Students/StudentsSideBar/StudentsSideBar";
+import Alert from "../../Components/UI/Alert/Alert";
 
 import { withRouter } from "react-router-dom";
 
@@ -13,9 +14,10 @@ import InputModal from "../../Components/UI/InputModal/InputModal";
 import DefaultText from "../../Components/UI/DefaultText/DefaultText";
 import PageNotFound from "../../Components/UI/PageNotFound/PageNotFound";
 
-import key from '../../Components/UI/keygenerator';
+import key from "../../Components/UI/keygenerator";
 
 import * as actionTypes from "../../Store/actions/actionTypes";
+import * as actions from "../../Store/actions/actionCreators";
 import { connect } from "react-redux";
 
 class Students extends React.Component {
@@ -27,6 +29,10 @@ class Students extends React.Component {
          rollNo: "",
       },
       isTheFormValid: false,
+      alertMessage: null,
+      alertShow: false,
+      alertButtons: [],
+      alertActions: [],
    };
 
    detectIndex = () => {
@@ -60,6 +66,7 @@ class Students extends React.Component {
                ...newStudent,
             }
          );
+         this.props.saveLocally();
          this.setState({
             isAddingStudent: false,
             newStudentDetails: { name: "", rollNo: "" },
@@ -84,8 +91,9 @@ class Students extends React.Component {
 
    deleteSubject = (code) => {
       console.log("deleting");
-      this.props.history.push('/subjects/');
+      this.props.history.push("/subjects/");
       this.props.deleteSubjectHandler(code);
+      this.props.saveLocally();
    };
 
    render() {
@@ -106,27 +114,93 @@ class Students extends React.Component {
                   rollNo={student.rollNo}
                   isDereg={student.isDereg}
                   isAdded={student.isAdded}
-                  deregClick={() =>
-                     this.props.studentDeregHandler(
-                        this.props.subjects[this.state.presentSubjectIndex]
-                           .code,
-                        student.name
-                     )
-                  }
-                  addClick={() =>
+                  deregClick={() => {
+                     if (!student.isDereg) {
+                        this.setState({
+                           alertShow: true,
+                           alertMessage:
+                              "Do you want to de-register " +
+                              student.name +
+                              "? Later you can re-enroll.",
+                           alertButtons: ["Cancel", "Yes"],
+                           alertActions: [
+                              () => {
+                                 this.setState({
+                                    alertShow: false,
+                                    alertActions: [],
+                                    alertButtons: [],
+                                    alertMessage: null,
+                                 });
+                              },
+                              () => {
+                                 this.props.studentDeregHandler(
+                                    this.props.subjects[
+                                       this.state.presentSubjectIndex
+                                    ].code,
+                                    student.name
+                                 );
+                                 this.setState({
+                                    alertShow: false,
+                                    alertActions: [],
+                                    alertButtons: [],
+                                    alertMessage: null,
+                                 });
+                                 this.props.saveLocally();
+                              },
+                           ],
+                        });
+                     } else {
+                        this.props.studentDeregHandler(
+                           this.props.subjects[this.state.presentSubjectIndex]
+                              .code,
+                           student.name
+                        );
+                     }
+                  }}
+                  addClick={() => {
                      this.props.studentAddHandler(
                         this.props.subjects[this.state.presentSubjectIndex]
                            .code,
                         student.name
-                     )
-                  }
-                  deleteClick={() =>
-                     this.props.deleteStudentHandler(
-                        this.props.subjects[this.state.presentSubjectIndex]
-                           .code,
-                        student.name
-                     )
-                  }
+                     );
+                     this.props.saveLocally();
+                  }}
+                  deleteClick={() => {
+                     this.setState({
+                        alertShow: true,
+                        alertMessage:
+                           "Do you want to delete " +
+                           student.name +
+                           " from the register? You cannot revert this.",
+                        alertButtons: ["Cancel", "Yes"],
+                        alertActions: [
+                           () => {
+                              this.setState({
+                                 alertShow: false,
+                                 alertActions: [],
+                                 alertButtons: [],
+                                 alertMessage: null,
+                              });
+                           },
+                           () => {
+                              this.props.deleteStudentHandler(
+                                 this.props.subjects[
+                                    this.state.presentSubjectIndex
+                                 ].code,
+                                 student.name
+                              );
+                              this.props.saveLocally();
+                              this.setState({
+                                 alertShow: false,
+                                 alertActions: [],
+                                 alertButtons: [],
+                                 alertMessage: null,
+                              });
+                              this.props.saveLocally();
+                           },
+                        ],
+                     });
+                  }}
                />
             );
             if (!student.isDereg) {
@@ -219,6 +293,7 @@ class Students extends React.Component {
                                  this.state.presentSubjectIndex
                               ].code
                            );
+                           this.props.saveLocally();
                         }}
                         className={classes.MinusAll}
                      >
@@ -230,11 +305,28 @@ class Students extends React.Component {
                      <button
                         disabled={!removeAllButton}
                         onClick={() => {
+                           this.setState({
+                              alertShow: true,
+                              alertMessage:
+                                 "All the Students have been added to the platfrom succesfully.",
+                              alertButtons: ["OK"],
+                              alertActions: [
+                                 () => {
+                                    this.setState({
+                                       alertShow: false,
+                                       alertActions: [],
+                                       alertButtons: [],
+                                       alertMessage: null,
+                                    });
+                                 },
+                              ],
+                           });
                            this.props.addAllStudents(
                               this.props.subjects[
                                  this.state.presentSubjectIndex
                               ].code
                            );
+                           this.props.saveLocally();
                         }}
                         className={classes.AddAll}
                      >
@@ -275,9 +367,7 @@ class Students extends React.Component {
             <InputModal
                show={this.state.isAddingStudent}
                submit={() => {
-                  this.newStudent({
-                     ...this.state.newStudentDetails,
-                  });
+                  this.newStudent({ ...this.state.newStudentDetails });
                }}
                changed={this.changeValue}
                submitText="Add New Student"
@@ -296,6 +386,26 @@ class Students extends React.Component {
                   },
                ]}
             />
+
+            <Alert
+               show={this.state.alertShow}
+               buttons={this.state.alertButtons}
+               message={this.state.alertMessage}
+               actions={this.state.alertActions}
+            >
+               Hello
+            </Alert>
+            <BackDrop
+               show={this.state.alertShow}
+               clicked={() => {
+                  this.setState({
+                     alertShow: false,
+                     alertActions: [],
+                     alertButtons: [],
+                     alertMessage: null,
+                  });
+               }}
+            />
          </Wrap>
       );
    }
@@ -309,6 +419,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
+      saveLocally: () => dispatch(actions.saveLocally()),
       studentAddHandler: (code, name) =>
          dispatch({
             type: actionTypes.ADD_STUDENT,
@@ -342,7 +453,7 @@ const mapDispatchToProps = (dispatch) => {
       deleteSubjectHandler: (code) =>
          dispatch({
             type: actionTypes.DELETE_SUBJECT,
-            payLoad: { code: code},
+            payLoad: { code: code },
          }),
    };
 };

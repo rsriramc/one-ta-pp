@@ -1,13 +1,16 @@
 .Auth{
-   margin-top: 80px;
    width: 90%;
-   max-width: 400px;
-   margin: 80px auto 0;
+   max-width: 440px;
    text-align: center;
+   background-color: rgba(255, 255, 255, 0.568);
+   padding: 40px;
+   box-sizing: border-box;
+   font-family: 'Poppins', sans-serif;
 }
 
 .Valid{
    border: none;
+   background-color: transparent;
    border-bottom: 2px solid grey;
    display: block;
    width: 90%;
@@ -16,9 +19,11 @@
    margin: 10px auto;
    text-align: left;
    font-size: 16px;
+   font-family: 'Poppins', sans-serif;
 }
 .InValid{
    border: none;
+   background-color: rgba(250, 128, 114, 0.603);
    border-bottom:  2px solid red;
    display: block;
    width: 90%;
@@ -27,6 +32,7 @@
    margin: 10px auto;
    text-align: left;
    font-size: 16px;
+   font-family: 'Poppins', sans-serif;
 }
 .Valid:focus{
    outline: none;
@@ -40,7 +46,7 @@
    border: 2px solid grey;
    background-color: white;
    padding: 5px 20px;
-
+   font-family: 'Poppins', sans-serif;
 }
 
 .Error{

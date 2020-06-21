@@ -1,29 +1,18 @@
 import React from "react";
 
 import classes from "./Auth.css";
-// import key from "../../Components/UI/keygenerator";
-
-// import Input from '../../Components/UI/Input/Input';
 
 import * as actions from "../../Store/actions/actionCreators";
-import * as actionTypes from '../../Store/actions/actionTypes';
+import * as actionTypes from "../../Store/actions/actionTypes";
 import { connect } from "react-redux";
-import axios from "axios";
+import { Redirect, withRouter } from "react-router";
+// import axios from "axios";
 
 class Auth extends React.Component {
-   componentWillUnmount = () => {
-      axios
-         .post(
-            "https://one-ta-pp.firebaseio.com/subjects.json?auth=" +
-               this.props.token,
-            {
-               subjects: { physics: 1, chem: 2 },
-            }
-         )
-         .then((response) => {
-            console.log(response.data);
-         });
-   };
+   // componentWillUnmount = () => {
+   //    localStorage.setItem("subjects", this.props.isAuth);
+   // };
+
    state = {
       controls: [
          {
@@ -46,7 +35,7 @@ class Auth extends React.Component {
             elementType: "password",
             elementConfig: {
                type: "password",
-               placeHolder: "Password",
+               placeHolder: "Password (Min 6 Chars)",
             },
             validation: {
                required: true,
@@ -92,18 +81,12 @@ class Auth extends React.Component {
    };
 
    submitHandler = (e) => {
-      // axios
-      //    .post("https://one-ta-pp.firebaseio.com/subjects.json?auth=" + this.props.token, {
-      //       subjects: {physics : 1, chem :2},
-      //    })
-      //    .then((response) => {
-      //       console.log(response.data);
-      //    });
       e.preventDefault();
       this.props.auth(
          this.state.controls[0].value,
          this.state.controls[1].value,
-         this.props.authMode
+         this.props.authMode,
+         this.props.history
       );
    };
 
@@ -143,7 +126,15 @@ class Auth extends React.Component {
 
       return (
          <div className={classes.Auth}>
-            <p>Authentication</p>
+            {this.props.isAuth !== null &&
+            this.props.isAuth !== "demo" &&
+            this.props.isAuth !== "own" ? (
+               <Redirect to="/subjects/" />
+            ) : null}
+            <p>
+               Sign In to have access to store your data in cloud and transfer
+               your work across devices.
+            </p>
             <form
                onSubmit={(e) => {
                   this.submitHandler(e);
@@ -181,19 +172,21 @@ class Auth extends React.Component {
                   className={classes.ParaLinks}
                   onClick={(e) => {
                      e.preventDefault();
-                     this.props.loadDemoData();
+                     this.props.history.push("/subjects");
+                     this.props.loadDemoData(this.props.history);
                   }}
                >
-                  Skip Signing and Load Demo Data
+                  Skip Sign In and Load Demo Data
                </p>
                <p
                   className={classes.ParaLinks}
                   onClick={(e) => {
                      e.preventDefault();
-                     this.props.loadOwnData();
+                     this.props.history.push("/subjects");
+                     this.props.loadOwnData(this.props.history);
                   }}
                >
-                  Skip Signing and Load Own Data
+                  Skip Sign In and work locally on device
                </p>
             </form>
          </div>
@@ -203,20 +196,22 @@ class Auth extends React.Component {
 
 const mapStateToProps = (state) => {
    return {
+      isAuth: state.token,
       authMode: state.authMode,
       error: state.authError,
       token: state.token,
+      userId: state.userId,
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      auth: (email, password, authMode) =>
-         dispatch(actions.auth(email, password, authMode)),
+      auth: (email, password, authMode, history) =>
+         dispatch(actions.auth(email, password, authMode, history)),
       switchAuthMode: () => dispatch(actions.authSwitchMode()),
-      loadDemoData: () => dispatch({ type: actionTypes.LOAD_DEMODATA }),
-      loadOwnData: () => dispatch({ type: actionTypes.LOAD_OWNDATA }),
+      loadDemoData: (history) => dispatch(actions.demoAuth(history)),
+      loadOwnData: (history) => dispatch(actions.ownAuth(history))
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Auth));

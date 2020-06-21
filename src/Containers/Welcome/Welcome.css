@@ -1,0 +1,40 @@
+.Welcome {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: center;
+   width: 100%;
+   border: 1px solid black;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 4000;
+   animation-name: vanish;
+   background-color: beige;
+   box-sizing: border-box;
+   animation-duration: 4s;
+   animation-fill-mode: forwards;
+}
+
+.Logo{
+   display: block;
+   width: 60vw;
+   max-width: 340px;
+}
+
+@keyframes vanish{
+   0%{
+      opacity: 1;
+      display: block;
+   }
+   99.9%{
+      opacity: 1;
+      display: block;
+   }
+   100%{
+      opacity: 0;
+      display: none;
+   }
+}

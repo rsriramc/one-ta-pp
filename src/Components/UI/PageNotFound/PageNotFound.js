@@ -10,7 +10,6 @@ const pageNotFound = (prosp) => {
          <p>Use the following links to get the work back on track.</p>
          <nav>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/subjects">Subjects</NavLink>
          </nav>
       </div>
    );

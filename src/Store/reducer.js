@@ -91,35 +91,48 @@ demoSubjects.forEach((subject, index) => {
 });
 
 const initialState = {
+   isLoadingDataForAuth : false,
+   authEmail : null,
    authMode: "SIGNIN",
+   hasLogout : false,
+   hasSaved  : true,
    auth: null,
    authError: null,
    userId: null,
    token: null,
-   subjects: demoSubjects,
+   refreshToken: null,
+   subjects: [],
+};
+
+const copySubjects = (subjectsArray) => {
+   return subjectsArray
+      ? [
+           ...subjectsArray.map((subject) => {
+              return {
+                 ...subject,
+                 credits: [...subject.credits],
+                 students: subject.students
+                    ? subject.students.map((student) => {
+                         return {
+                            ...student,
+                         };
+                      })
+                    : [],
+              };
+           }),
+        ]
+      : [];
 };
 
 // localStorage.setItem("demoData" , JSON.stringify(demoSubjects));
 
 const reducer = (state = initialState, action) => {
+
    //Common Duplicate for The Present State so that we can change the state immutably
 
-   const subjectsCopy = [
-      ...state.subjects.map((subject) => {
-         return {
-            ...subject,
-            credits: [...subject.credits],
-            students: subject.students.map((student) => {
-               return {
-                  ...student,
-               };
-            }),
-         };
-      }),
-   ];
-
    switch (action.type) {
-      case actionTypes.DEREG_STUDENT:
+      case actionTypes.DEREG_STUDENT: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code)
                subject.students.forEach((student, index2) => {
@@ -134,9 +147,11 @@ const reducer = (state = initialState, action) => {
                   }
                });
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.ADD_STUDENT:
+      case actionTypes.ADD_STUDENT: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code)
                subject.students.forEach((student, index2) => {
@@ -147,27 +162,33 @@ const reducer = (state = initialState, action) => {
                   }
                });
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.ADD_ALL_STUDENTS:
+      case actionTypes.ADD_ALL_STUDENTS: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code)
                subject.students.forEach((student, index2) => {
                   subjectsCopy[index].students[index2].isAdded = true;
                });
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.MINUS_ALL_STUDENTS:
+      case actionTypes.MINUS_ALL_STUDENTS: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code)
                subject.students.forEach((student, index2) => {
                   subjectsCopy[index].students[index2].isAdded = false;
                });
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.ADD_NEW_STUDENT:
+      case actionTypes.ADD_NEW_STUDENT: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code) {
                subject.students.push({
@@ -178,17 +199,21 @@ const reducer = (state = initialState, action) => {
                });
             }
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.ADD_SUBJECT:
+      case actionTypes.ADD_SUBJECT: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.push({
             ...action.payLoad.newSubject,
             logo: images.DefaultImg,
             students: [],
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.DELETE_STUDENT:
+      case actionTypes.DELETE_STUDENT: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code)
                subject.students.forEach((student, index2) => {
@@ -197,18 +222,23 @@ const reducer = (state = initialState, action) => {
                   }
                });
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
-      case actionTypes.DELETE_SUBJECT:
+      case actionTypes.DELETE_SUBJECT: {
+         let subjectsCopy = copySubjects(state.subjects);
          subjectsCopy.forEach((subject, index) => {
             if (subject.code === action.payLoad.code)
                subjectsCopy.splice(index, 1);
          });
-         return { ...state, subjects: [...subjectsCopy] };
+         return { ...state, subjects: [...subjectsCopy], hasSaved: false };
+      }
 
       case actionTypes.LOAD_DEMODATA:
          return {
             ...state,
+            token: "demo",
+            refreshToken: "demo",
             subjects: demoSubjects,
             // subjects: JSON.parse(localStorage.getItem("demoData")),
          };
@@ -216,7 +246,19 @@ const reducer = (state = initialState, action) => {
       case actionTypes.LOAD_OWNDATA:
          return {
             ...state,
-            subjects: [],
+            token : "own",
+            refreshToken : "own",
+            subjects: action.payload.subjects,
+         };
+
+      case actionTypes.AUTH_START:
+         return {
+            ...state,
+            auth: null,
+            authError: null,
+            userId: null,
+            token: null,
+            refreshToken: null,
          };
 
       case actionTypes.AUTH_FAIL:
@@ -230,6 +272,8 @@ const reducer = (state = initialState, action) => {
             ...state,
             userId: action.payload.authData.localId,
             token: action.payload.authData.idToken,
+            refreshToken: action.payload.authData.refreshToken,
+
          };
 
       case actionTypes.AUTH_SWITCH_MODE:
@@ -244,10 +288,56 @@ const reducer = (state = initialState, action) => {
       case actionTypes.AUTH_LOGOUT:
          return {
             ...state,
+            subjects: [],
+            hasLogout : true,
             authMode: "SIGNIN",
             userId: null,
             token: null,
+            refreshToken : null,
          };
+
+      case actionTypes.LOAD_CLOUD_DATA: {
+         let subjectsCopy = copySubjects(action.payload.subjects);
+         return {
+            ...state,
+            subjects: subjectsCopy,
+         };
+      }
+
+      case actionTypes.REFRESH_TOKEN: {
+         return {
+            ...state,
+            token : action.payload.token,
+            userId : action.payload.userId,
+            refreshToken : action.payload.refreshToken,
+         }   
+      }
+
+      case actionTypes.SAVE_DATA : {
+         return {
+            ...state,
+            hasSaved : true,
+         }
+      }
+      
+      case 'HAS_SAVED':
+         return {
+            ...state,
+            hasSaved : action.payload.hasSaved,
+         }
+
+      case actionTypes.START_LOAD: {
+         return {
+            ...state,
+            isLoadingDataForAuth : true,
+         }
+      }
+      case actionTypes.END_LOAD: {
+         return {
+            ...state,
+            isLoadingDataForAuth : false,
+         }
+      }
 
       default:
          return state;

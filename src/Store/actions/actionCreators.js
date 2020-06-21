@@ -1,5 +1,8 @@
 export {
    auth,
    authSwitchMode,
-   authLogout
+   authLogout,
+   saveData,
+   autoLogin,
+   saveLocally,demoAuth,ownAuth
 } from './auth';

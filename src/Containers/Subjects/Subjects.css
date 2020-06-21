@@ -9,6 +9,10 @@
    transition: 0.2s all;
 }
 
+.Note{
+   text-align: center;
+}
+
 .AddNew {
    position: fixed;
    bottom: 40px;
@@ -29,6 +33,23 @@
    transform: scale(1.05);
 }
 
+.Save{
+   display: block;
+   width: 200px;
+   margin: 0 auto;
+   height: 36px;
+   padding: 7px;
+   font-size: 16px;
+   background-color: salmon;
+   border: 2px solid grey;
+   border-radius: 5px;
+   margin-top: 20px;
+   cursor: pointer;
+}
+
+.Save:disabled{
+   background-color: lightgreen;
+}
 .SubjectContentBlocks {
 }
 .SubjectContentTiles {

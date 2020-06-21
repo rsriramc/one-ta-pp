@@ -3,6 +3,7 @@ import React from "react";
 import classes from "./NavigationItems.css";
 
 import NavigationItem from "./NavigationItem/NavigationItem";
+import Wrap from "../../../../../hoc/Wrap/Wrap";
 
 const navigationItems = (props) => {
    return (
@@ -10,18 +11,18 @@ const navigationItems = (props) => {
          <NavigationItem hide={props.hide} exact={true} linkTo="/">
             Home
          </NavigationItem>
-         <NavigationItem hide={props.hide} exact={true} linkTo="/subjects">
-            Subjects
-         </NavigationItem>
-         {props.isAuth ? (
-            <NavigationItem hide={props.hide} exact={true} linkTo="/logout">
+         {props.isAuth !== null ? (
+            <NavigationItem hide={props.hide} exact={true} linkTo="/subjects">
+               Subjects
+            </NavigationItem>
+         ) : null}
+         {props.isAuth !== null &&
+         props.isAuth !== "own" &&
+         props.isAuth !== "demo" ? (
+            <NavigationItem hide={props.hide} exact={true} clicked={props.logout} linkTo="/unn">
                Logout
             </NavigationItem>
-         ) : (
-            <NavigationItem hide={props.hide} exact={true} linkTo="/auth">
-               Sign In
-            </NavigationItem>
-         )}
+         ) : null}
          <NavigationItem hide={props.hide} exact={true} linkTo="/pagenotfound">
             Dummy
          </NavigationItem>

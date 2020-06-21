@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 
 class Logout extends React.Component {
    componentDidMount = () => {
-      this.props.logout();
+      this.props.logout(this.props.refreshToken);
    };
 
    render = () => {
@@ -16,14 +16,16 @@ class Logout extends React.Component {
    }
 }
 
-// const mapStateToProps = state => {
-//    return{}
-// }
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
    return {
-      logout : () => dispatch(actions.authLogout())
+      refreshToken : state.refreshToken
    }
 }
 
-export default connect(null,mapDispatchToProps)(Logout);
+const mapDispatchToProps = dispatch => {
+   return {
+      logout : (rt) => dispatch(actions.authLogout(rt))
+   }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Logout);

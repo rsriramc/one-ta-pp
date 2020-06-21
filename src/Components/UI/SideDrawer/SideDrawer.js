@@ -10,7 +10,7 @@ const sideDrawer = (props) => {
          className={classes.SideDrawer}
          style={{ right: props.isOpened ? "0" : "-100vw" }}
       >
-         <NavigationItems isAuth={props.isAuth} hide={props.hide} />
+         <NavigationItems isAuth={props.isAuth} hide={props.hide} logout={props.logout}/>
       </div>
    );
 };

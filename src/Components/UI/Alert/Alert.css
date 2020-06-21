@@ -1,0 +1,57 @@
+.AlertShow {
+   background-color: #fff;
+   border: 1px solid black;
+   box-shadow: 4px 4px 6px rgb(136, 136, 136);
+   border-top: 30px solid grey;
+   border-radius: 4px;
+   opacity: 1;
+   width: 90vw;
+   max-width: 400px;
+   font-family: "Poppins", sans-serif;
+   padding: 20px;
+   box-sizing: border-box;
+   position: fixed;
+   top: 50vh;
+   text-align: center;
+   transform: translate(-50%, -50%);
+   left: 50vw;
+   transition: all 0.6s;
+   z-index: 950;
+}
+
+.AlertHide {
+   background-color: #fff;
+   border: 1px solid black;
+   box-shadow: 4px 4px 6px rgb(136, 136, 136);
+   border-top: 30px solid grey;
+   border-radius: 4px;
+   opacity: 0;
+   width: 90vw;
+   max-width: 400px;
+   font-family: "Poppins", sans-serif;
+   padding: 20px;
+   box-sizing: border-box;
+   position: fixed;
+   top: -100vh;
+   text-align: center;
+   transform: translate(-50%, -50%);
+   left: 50vw;
+   transition: all 0.6s;
+   z-index: 950;
+}
+
+.ButtonsArray {
+   display: block;
+   text-align: center;
+   margin-top: 10px;
+}
+
+.Button {
+   display: inline-block;
+   background-color: rgb(119, 194, 218);
+   padding: 4px 10px;
+   margin: 5px 20px;
+   border: 1px solid grey;
+   font: inherit;
+   font-size: 90%;
+}
