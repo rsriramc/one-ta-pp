@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./NavigationItems.css";
 
 import NavigationItem from "./NavigationItem/NavigationItem";
-import Wrap from "../../../../../hoc/Wrap/Wrap";
+// import Wrap from "../../../../../hoc/Wrap/Wrap";
 
 const navigationItems = (props) => {
    return (

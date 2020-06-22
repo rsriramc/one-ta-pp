@@ -36,7 +36,7 @@ export const saveLocally = () => {
             JSON.stringify(getState().subjects)
          );
       } else {
-         console.log("Happy");
+         // console.log("Happy");
          localStorage.setItem("subjects", JSON.stringify(getState().subjects));
          localStorage.setItem(
             "hasSavedToCloud",
@@ -72,7 +72,7 @@ export const autoLogin = () => {
 
       if (localStorage.getItem("refreshToken") !== null)
          dispatch(refreshToken(localStorage.getItem("refreshToken")));
-      console.log("Hello how are you");
+      // console.log("Hello how are you");
       if (localStorage.getItem("refreshToken") === "own") {
          dispatch(
             loadCloudData(JSON.parse(localStorage.getItem("ownSubjects")))
@@ -122,11 +122,11 @@ export const saveData = () => {
             }
          )
          .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             localStorage.setItem("hasSavedToCloud", "true");
          })
          .catch((err) => {
-            console.log(err.response.data.error.message);
+            // console.log(err.response.data.error.message);
          });
       dispatch(savedata());
    };
@@ -155,7 +155,7 @@ export const refreshToken = (refreshUserToken) => {
                      response.data.refresh_token
                   )
                );
-               console.log(parseFloat(response.data.expires_in) - 100);
+               // console.log(parseFloat(response.data.expires_in) - 100);
                setTimeout(() => {
                   if (!getState().hasLogout) {
                      dispatch(refreshToken(response.data.refresh_token));
@@ -163,7 +163,7 @@ export const refreshToken = (refreshUserToken) => {
                }, 1000 * (parseFloat(response.data.expires_in) - 100));
             })
             .catch((err) => {
-               console.log(err.response.data.error.message);
+               // console.log(err.response.data.error.message);
             });
       }
    };
@@ -186,7 +186,7 @@ export const auth = (email, password, authMode, history) => {
          .then((response) => {
             localStorage.setItem("subjects", []);
             history.push("/subjects");
-            console.log("hello");
+            // console.log("hello");
             localStorage.setItem("hasSavedToCloud", "true");
             dispatch({
                type: "HAS_SAVED",
@@ -195,7 +195,7 @@ export const auth = (email, password, authMode, history) => {
                },
             });
             dispatch(authSuccess(response.data));
-            console.log(parseFloat(response.data.expiresIn) - 100);
+            // console.log(parseFloat(response.data.expiresIn) - 100);
             setTimeout(() => {
                dispatch(refreshToken(response.data.refreshToken));
             }, 1000 * (parseFloat(response.data.expiresIn) - 100));
@@ -243,7 +243,7 @@ export const auth = (email, password, authMode, history) => {
 export const demoAuth = (history) => {
    return (dispatch, getState) => {
       history.push("/subjects");
-      console.log("demoAuth");
+      
       localStorage.setItem("refreshToken", "demo");
       dispatch({ type: actionTypes.LOAD_DEMODATA });
       localStorage.setItem("subjects", JSON.stringify(getState().subjects));
@@ -253,7 +253,7 @@ export const demoAuth = (history) => {
 export const ownAuth = (history) => {
    return (dispatch, getState) => {
       history.push("/subjects");
-      console.log("ownAuth");
+      // console.log("ownAuth");
       localStorage.setItem("refreshToken", "own");
       dispatch({
          type: actionTypes.LOAD_OWNDATA,

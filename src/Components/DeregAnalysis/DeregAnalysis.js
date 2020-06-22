@@ -8,7 +8,7 @@ import DefaultText from "../UI/DefaultText/DefaultText";
 
 import deregAna from "../../Assets/Images/deregAnalysis2.jpg";
 
-import { faChartBar, faClock, faBook } from "@fortawesome/free-solid-svg-icons";
+import { faChartBar, /*faClock,*/ faBook } from "@fortawesome/free-solid-svg-icons";
 
 import Dereg from "./Dereg/Dereg";
 import { connect } from "react-redux";

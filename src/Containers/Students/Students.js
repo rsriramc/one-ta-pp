@@ -90,7 +90,7 @@ class Students extends React.Component {
    };
 
    deleteSubject = (code) => {
-      console.log("deleting");
+      //console.log("deleting");
       this.props.history.push("/subjects/");
       this.props.deleteSubjectHandler(code);
       this.props.saveLocally();

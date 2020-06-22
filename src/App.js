@@ -13,7 +13,7 @@ import Home from "./Containers/Home/Home";
 import PageNotFound from "./Components/UI/PageNotFound/PageNotFound";
 
 //Accessories
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch/*, Redirect*/ } from "react-router-dom";
 import { connect } from "react-redux";
 import Logout from "./Containers/Logout/Logout";
 import * as actions  from "./Store/actions/actionCreators";

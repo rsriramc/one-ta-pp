@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./Auth.css";
 
 import * as actions from "../../Store/actions/actionCreators";
-import * as actionTypes from "../../Store/actions/actionTypes";
+// import * as actionTypes from "../../Store/actions/actionTypes";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router";
 // import axios from "axios";

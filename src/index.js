@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, /*HashRouter*/ } from "react-router-dom";
 import { createStore,compose,applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
@@ -23,6 +23,8 @@ const app = (
       <App />
    </BrowserRouter>
 );
+
+   //  console.log("This is the process.env", process.env.PUBLIC_URL);
 
 ReactDOM.render(
    <Provider store={store}>

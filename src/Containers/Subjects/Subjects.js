@@ -15,7 +15,7 @@ import DefaultText from "../../Components/UI/DefaultText/DefaultText";
 
 import key from "../../Components/UI/keygenerator";
 
-import { faChartBar, faClock, faBook } from "@fortawesome/free-solid-svg-icons";
+import { faChartBar, /*faClock,*/ faBook } from "@fortawesome/free-solid-svg-icons";
 
 import * as actionTypes from "../../Store/actions/actionTypes";
 import * as actions from "../../Store/actions/actionCreators";
