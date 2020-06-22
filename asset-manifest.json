@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/one-ta-pp/static/css/main.e90ffd4e.chunk.css",
+    "main.css": "/one-ta-pp/static/css/main.fd8d1c32.chunk.css",
     "main.js": "/one-ta-pp/static/js/main.3bc53b4b.chunk.js",
     "main.js.map": "/one-ta-pp/static/js/main.3bc53b4b.chunk.js.map",
     "runtime-main.js": "/one-ta-pp/static/js/runtime-main.39906800.js",
@@ -8,9 +8,9 @@
     "static/js/2.d955e815.chunk.js": "/one-ta-pp/static/js/2.d955e815.chunk.js",
     "static/js/2.d955e815.chunk.js.map": "/one-ta-pp/static/js/2.d955e815.chunk.js.map",
     "index.html": "/one-ta-pp/index.html",
-    "precache-manifest.34ad3cab64f4db4829bc66cd492441de.js": "/one-ta-pp/precache-manifest.34ad3cab64f4db4829bc66cd492441de.js",
+    "precache-manifest.1237e1a9c978aa9e8c2a532b6220f269.js": "/one-ta-pp/precache-manifest.1237e1a9c978aa9e8c2a532b6220f269.js",
     "service-worker.js": "/one-ta-pp/service-worker.js",
-    "static/css/main.e90ffd4e.chunk.css.map": "/one-ta-pp/static/css/main.e90ffd4e.chunk.css.map",
+    "static/css/main.fd8d1c32.chunk.css.map": "/one-ta-pp/static/css/main.fd8d1c32.chunk.css.map",
     "static/js/2.d955e815.chunk.js.LICENSE.txt": "/one-ta-pp/static/js/2.d955e815.chunk.js.LICENSE.txt",
     "static/media/algo.png": "/one-ta-pp/static/media/algo.6798eea9.png",
     "static/media/DeregAnalysis.css": "/one-ta-pp/static/media/bg.7f636e2e.png",
@@ -28,7 +28,7 @@
   "entrypoints": [
     "static/js/runtime-main.39906800.js",
     "static/js/2.d955e815.chunk.js",
-    "static/css/main.e90ffd4e.chunk.css",
+    "static/css/main.fd8d1c32.chunk.css",
     "static/js/main.3bc53b4b.chunk.js"
   ]
 }
