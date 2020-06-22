@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0e46956d92628567b929155626461337",
+    "revision": "705c63ba41b3fe3610b6d4a9e9943db3",
     "url": "/one-ta-pp/index.html"
   },
   {
-    "revision": "da4cada86df2df1178b4",
+    "revision": "6aa8156fc00b8f0167fc",
     "url": "/one-ta-pp/static/css/main.fd8d1c32.chunk.css"
   },
   {
-    "revision": "38adfa2bb7e921c692f8",
-    "url": "/one-ta-pp/static/js/2.13c7804e.chunk.js"
+    "revision": "45c83990588a41e8282d",
+    "url": "/one-ta-pp/static/js/2.d955e815.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/one-ta-pp/static/js/2.13c7804e.chunk.js.LICENSE.txt"
+    "url": "/one-ta-pp/static/js/2.d955e815.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "da4cada86df2df1178b4",
-    "url": "/one-ta-pp/static/js/main.7dde8cb5.chunk.js"
+    "revision": "6aa8156fc00b8f0167fc",
+    "url": "/one-ta-pp/static/js/main.6986dc1e.chunk.js"
   },
   {
     "revision": "c665f4d4bba22d244535",
