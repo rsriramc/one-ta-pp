@@ -102,9 +102,6 @@ class ToolBar extends React.Component {
                clicked={() => {
                   this.setState({
                      alertShow: false,
-                     alertActions: [],
-                     alertButtons: [],
-                     alertMessage: null,
                   });
                }}
             />

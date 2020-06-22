@@ -65,18 +65,19 @@ export const loadCloudData = (subjects) => {
 };
 
 export const autoLogin = () => {
-   return (dispatch, getState) => {
+   return (dispatch) => {
       if (localStorage.getItem("ownSubjects") === null)
          localStorage.setItem("ownSubjects", JSON.stringify([]));
       dispatch({ type: actionTypes.START_LOAD });
+
       if (localStorage.getItem("refreshToken") !== null)
          dispatch(refreshToken(localStorage.getItem("refreshToken")));
-
-      if (getState().refreshToken === "own")
+      console.log("Hello how are you");
+      if (localStorage.getItem("refreshToken") === "own") {
          dispatch(
             loadCloudData(JSON.parse(localStorage.getItem("ownSubjects")))
          );
-      else
+      } else
          dispatch(loadCloudData(JSON.parse(localStorage.getItem("subjects"))));
       if (JSON.parse(localStorage.getItem("hasSavedToCloud")) === false)
          dispatch({
@@ -213,6 +214,7 @@ export const auth = (email, password, authMode, history) => {
                   )
                   .then((res) => {
                      dispatch(loadCloudData(res.data.subjects));
+                     dispatch({ type: actionTypes.END_LOAD });
                   });
             } else {
                axios
@@ -223,6 +225,7 @@ export const auth = (email, password, authMode, history) => {
                         response.data.idToken
                   )
                   .then((res) => {
+                     dispatch({ type: actionTypes.END_LOAD });
                      dispatch({ type: actionTypes.END_LOAD });
                      dispatch(loadCloudData(res.data.subjects));
                      dispatch(saveLocally());

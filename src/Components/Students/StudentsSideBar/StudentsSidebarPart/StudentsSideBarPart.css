@@ -33,3 +33,10 @@
 .Right{
    width: 70px;
 }
+
+
+@media screen and (max-width : 990px){
+   .Left {
+      display: none;
+   }
+}

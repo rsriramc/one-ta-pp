@@ -8,6 +8,7 @@
    background-size: contain;
    font-size: 18px;
    margin-bottom: 60px;
+   transition: 0.3s all;
 }
 
 
@@ -73,7 +74,7 @@
    border: 2px solid #eee;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 720px) {
    .Students {
       font-size: 18px;
       min-height: 110vh;

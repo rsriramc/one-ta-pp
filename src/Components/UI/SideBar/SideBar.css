@@ -53,3 +53,34 @@
       display: none;
    }
 }
+
+@media screen and (min-width: 500px) and (max-width: 990px) {
+   .SideBarSubjects {
+      position: fixed;
+      top: 70px;
+      left: 5px;
+      width: 50px;
+      height: 100vh;
+      float: left;
+      padding: 5px;
+      z-index: 100;
+   }
+   .SideBar {
+      position: fixed;
+      top: unset;
+      bottom: 50px;
+      left: 10px;
+      width: 40px;
+      height: auto;
+      float: left;
+      z-index: 20;
+   }
+   .icons {
+      font-size: 30px;
+      margin-right: 10px;
+   }
+
+   .SideBarStudents {
+      display: none;
+   }
+}

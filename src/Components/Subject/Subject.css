@@ -85,14 +85,14 @@
 }
 
 .SubjectTiles {
-   width: 38%;
+   width: 90%;
    border: 2px solid black;
    max-width: 600px;
    display: inline-block;
    height: 180px;
    position: relative;
    cursor: pointer;
-   margin-top : 20px;
+   margin-top: 20px;
    transition: 0.4s transform;
 }
 
@@ -172,4 +172,42 @@
 
 .brList {
    display: block;
+}
+
+@media screen and (min-width: 0px) {
+   .SubjectTiles {
+      width: 80%;
+      border: 2px solid black;
+      max-width: 360px;
+      display: inline-block;
+      height: 180px;
+      position: relative;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.4s transform;
+   }
+}
+
+@media screen and (min-width: 1200px) {
+   .SubjectList {
+      max-width: 42%;
+   }
+}
+
+@media screen and (min-width: 500px) and (max-width: 685px) {
+   .SubjectBlocks {
+      width: 40%;
+   }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1135px) {
+   .SubjectBlocks {
+      width: 28%;
+   }
+}
+
+@media screen and (min-width: 1340px) and (max-width: 1525px) {
+   .SubjectBlocks {
+      width: 20%;
+   }
 }

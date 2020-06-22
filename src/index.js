@@ -19,7 +19,7 @@ const store = createStore(
 );
 
 const app = (
-   <BrowserRouter>
+   <BrowserRouter basename="/one-ta-pp/">
       <App />
    </BrowserRouter>
 );

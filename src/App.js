@@ -21,6 +21,7 @@ import * as actions  from "./Store/actions/actionCreators";
 
 class App extends React.Component {
    componentDidMount = () => {
+      // let rt = JSON.parse(localStorage.getItem("refreshToken"))
       this.props.autoLogin();
    };
    render = () => (
@@ -52,7 +53,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
    return {
       subjects: state.subjects,
-      isAuth : state.token !== null
+      isAuth: state.token !== null,
    };
 };
 

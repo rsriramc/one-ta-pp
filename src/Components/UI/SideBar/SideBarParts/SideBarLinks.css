@@ -87,3 +87,42 @@ a.active {
       display: none;
    }
 }
+
+
+@media screen and (max-width: 990px) and (min-width : 500px) {
+   .SideBarLinksMain {
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      background-color: rgb(28, 68, 105);
+      height: 50px;
+      line-height: 40px;
+      width: 50px;
+      box-shadow: 2px 2px 3px #333;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: 0.5s width;
+      padding: 0;
+   }
+
+   .SideBarLinksMain:hover {
+      width: 200px;
+   }
+
+   .SideBarLink {
+      height: 100%;
+      padding: 5px 10px;
+      display: flex;
+      font-size: 18px;
+      color: inherit;
+      line-height: 40px;
+   }
+
+   .SideBarLink:hover,
+   a.active {
+      background-color: rgb(29, 99, 127);
+   }
+   .SideBarLinksSide {
+      display: none;
+   }
+}
