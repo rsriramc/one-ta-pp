@@ -168,7 +168,7 @@ class Subjects extends React.Component {
                         classes["SubjectContent" + this.state.display[0]]
                      }
                   >
-                     {this.props.subjects ? (
+                     {this.props.subjects.length ? (
                         subjects
                      ) : (
                         <DefaultText>

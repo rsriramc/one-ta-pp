@@ -78,7 +78,14 @@ export const autoLogin = () => {
             loadCloudData(JSON.parse(localStorage.getItem("ownSubjects")))
          );
       } else
-         dispatch(loadCloudData(JSON.parse(localStorage.getItem("subjects"))));
+         try {
+            dispatch(
+               loadCloudData(JSON.parse(localStorage.getItem("subjects")))
+            );
+         } catch (err) {
+            localStorage.removeItem("subjects");
+            console.log('Some error occured deleted the local subjects!');
+         }
       if (JSON.parse(localStorage.getItem("hasSavedToCloud")) === false)
          dispatch({
             type: "HAS_SAVED",
@@ -243,7 +250,7 @@ export const auth = (email, password, authMode, history) => {
 export const demoAuth = (history) => {
    return (dispatch, getState) => {
       history.push("/subjects");
-      
+
       localStorage.setItem("refreshToken", "demo");
       dispatch({ type: actionTypes.LOAD_DEMODATA });
       localStorage.setItem("subjects", JSON.stringify(getState().subjects));
