@@ -15,3 +15,9 @@
 .Logo{
    height: 100%;
 }
+
+.logoutBtn{
+   font: inherit;
+   color: black;
+   text-decoration: none;
+}

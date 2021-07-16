@@ -6,8 +6,11 @@ import NavigationItems from "../ToolBar/Navigation/NavigationItems/NavigationIte
 
 const sideDrawer = (props) => {
    return (
-      <div className={classes.SideDrawer} style={{right : props.isOpened ? '0' : '-100vw'}}>
-         <NavigationItems hide={props.hide}/>
+      <div
+         className={classes.SideDrawer}
+         style={{ right: props.isOpened ? "0" : "-100vw" }}
+      >
+         <NavigationItems isAuth={props.isAuth} hide={props.hide} logout={props.logout}/>
       </div>
    );
 };

@@ -3,29 +3,25 @@ import React from "react";
 import classes from "./SideBar.css";
 import SideBarLinks from "./SideBarParts/SideBarLinks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartBar, faClock, faBook } from "@fortawesome/free-solid-svg-icons";
+
+import key from '../keygenerator';
 
 const sideBar = (props) => {
+   const sidebarContent = props.items.map((item) => {
+      return (
+         <SideBarLinks prefer={item.prefer} link={item.linkTo} key = {key()}>
+            {item.icon ? (
+               <span className={classes.icons}>
+                  <FontAwesomeIcon icon={item.icon} />
+               </span>
+            ) : null}
+            {item.descrip}
+         </SideBarLinks>
+      );
+   });
    return (
       <div className={classes["SideBar" + props.place]}>
-         <SideBarLinks link="/subjects">
-            <span className={classes.icons}>
-               <FontAwesomeIcon icon={faBook} />
-            </span>
-            Subjects
-         </SideBarLinks>
-         <SideBarLinks link="/deregAnalysis">
-            <span className={classes.icons}>
-               <FontAwesomeIcon icon={faChartBar} />
-            </span>
-            Dereg.. Analysis
-         </SideBarLinks>
-         <SideBarLinks link="/recent">
-            <span className={classes.icons}>
-               <FontAwesomeIcon icon={faClock} />
-            </span>
-            Recent
-         </SideBarLinks>
+         {sidebarContent}
       </div>
    );
 };

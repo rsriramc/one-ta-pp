@@ -1,0 +1,287 @@
+.Animation {
+   display: block;
+   flex-shrink: 0;
+   height: 90vw;
+   width: 90vw;
+   max-width: 500px;
+   max-height: 500px;
+   position: relative;
+   transform-origin: center;
+   background-color: rgba(255, 255, 255, 0.212);
+}
+
+#man {
+   z-index: 3;
+   position: absolute;
+   left: 0;
+   bottom: 5%;
+}
+
+#Phone{
+   width: 30%;
+   height: 40%;
+   background-color: #fff;
+   border : 4px solid black;
+   border-bottom: 16px solid black;
+   z-index: 5;
+   padding: 10px;
+   position: absolute;
+   left: -100vh;
+   top: 20px;
+   animation-name: slidetoright;
+   animation-duration: 6s;
+   animation-iteration-count: infinite;
+}
+#Phone img{
+   width: 100%;
+}
+
+#Tap{
+   animation-name: tap;
+   animation-duration: 6s;
+   animation-iteration-count: infinite;
+   z-index: 100;
+}
+
+@keyframes tap{
+   0%{
+      transform: scale(0);
+   }
+   60%{
+      transform: scale(0);
+   }
+   70%{
+      transform: scale(1);
+   }
+   80%{
+      transform: scale(0);
+   }
+   100%{
+      transform: scale(0);
+   }
+}
+@keyframes slidetoright{
+   0%{
+      left: -100vh;
+   }
+   30%{
+      left: -100vh;
+   }
+   45%{
+      left: 10px;
+   }
+   85%{
+      left: 10px;
+   }
+   100%{
+      left: -100vh;
+   }
+}
+
+.Notif1,.Notif2,.Notif3,.Notif4,.Notif5,.Notif6 {
+   display: inline-block;
+   position: absolute;
+   background-color: white;
+   border: 1px solid black;
+   border-top: 20px grey solid;
+   padding: 10px;
+   text-align: center;
+   z-index: 2;
+   font-size: 12px;
+   animation-duration: 6s;
+   animation-fill-mode: forwards;
+   animation-iteration-count: infinite;
+   opacity: 0;
+}
+
+#eyeblacks {
+   animation-name: astonish;
+   animation-duration: 6s;
+   animation-fill-mode: forwards;
+   animation-iteration-count: infinite;
+}
+
+@keyframes astonish {
+   0% {
+      transform: none;
+   }
+   31% {
+      transform: none;
+   }
+   35% {
+      transform: translateY(-10px) translateX(-10px);
+   }
+   100% {
+      transform: translateY(-10px) translateX(-10px);
+   }
+}
+
+@keyframes delayCome1 {
+   0% {
+      opacity: 0;
+   }
+   10% {
+      opacity: 0;
+   }
+   11% {
+      opacity: 1;
+   }
+   69% {
+      opacity: 1;
+   }
+   70% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes delayCome2 {
+   0% {
+      opacity: 0;
+   }
+   15% {
+      opacity: 0;
+   }
+   16% {
+      opacity: 1;
+   }
+   69% {
+      opacity: 1;
+   }
+   70% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes delayCome3 {
+   0% {
+      opacity: 0;
+   }
+   20% {
+      opacity: 0;
+   }
+   21% {
+      opacity: 1;
+   }
+   69% {
+      opacity: 1;
+   }
+   70% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes delayCome4 {
+   0% {
+      opacity: 0;
+   }
+   25% {
+      opacity: 0;
+   }
+   26% {
+      opacity: 1;
+   }
+   69% {
+      opacity: 1;
+   }
+   70% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes delayCome5 {
+   0% {
+      opacity: 0;
+   }
+   30% {
+      opacity: 0;
+   }
+   31% {
+      opacity: 1;
+   }
+   69% {
+      opacity: 1;
+   }
+   70% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes delayCome6 {
+   0% {
+      opacity: 0;
+   }
+   35% {
+      opacity: 0;
+   }
+   36% {
+      opacity: 1;
+   }
+   69% {
+      opacity: 1;
+   }
+   70% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+
+.Notif1 {
+   top: 5%;
+   left: 7%;
+   animation-name: delayCome1;
+}
+.Notif2 {
+   top: 30%;
+   left: 50%;
+   animation-name: delayCome2;
+}
+
+.Notif3 {
+   top: 50%;
+   left: 5%;
+   animation-name: delayCome3;
+}
+
+.Notif4 {
+   top: 120px;
+   left: 50px;
+   animation-name: delayCome4;
+}
+
+.Notif5 {
+   top: 50px;
+   left: 46%;
+   animation-name: delayCome5;
+}
+
+.Notif6 {
+   top: 55%;
+   left: 40%;
+   animation-name: delayCome6;
+}
+
+.Animation button:disabled {
+   color: black;
+   background-color: rgb(235, 235, 235);
+   border: 1px solid black;
+   font: inherit;
+   font-size: 78%;
+}

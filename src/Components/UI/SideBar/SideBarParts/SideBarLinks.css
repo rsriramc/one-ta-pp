@@ -1,20 +1,43 @@
-.SideBarLinks {
+.SideBarLinksMain {
    width: 100%;
    height: 44px;
    border: 2px solid #eee;
    box-shadow: 2px 2px 4px #ccc;
    line-height: 30px;
-   padding: 5px 10px;
+   padding: 0;
    box-sizing: border-box;
-   margin: 10px 0;
+   margin: 10px 0 0;
    background-color: #c6f3fb;
    display: flex;
    align-items: center;
-
+   transition: 0.4s all;
+}
+.SideBarLinksSide {
+   width: 80%;
+   float: right;
+   height: 44px;
+   border: 2px solid #eee;
+   box-shadow: 2px 2px 4px #ccc;
+   line-height: 30px;
+   padding: 0;
+   box-sizing: border-box;
+   margin: 5px 0;
+   background-color: #b5e9f3;
+   display: flex;
+   align-items: center;
+   transition: 0.4s all;
 }
 
-.SideBarLinks a{
-   color: rgb(33, 64, 78);
+.SideBarLinksMain:hover {
+   transform: scale(1.05);
+}
+.SideBarLinksSide:hover {
+   transform: scale(1.05);
+}
+
+.SideBarLink {
+   padding: 5px 10px;
+   color: rgb(65, 84, 93);
    display: flex;
    align-items: center;
    height: 40px;
@@ -22,31 +45,84 @@
    box-sizing: border-box;
    text-decoration: none;
 }
+.SideBarLink:hover,
+a.active {
+   background-color: rgb(164, 224, 248);
+}
 
-@media screen and (max-width : 500px){
-   .SideBarLinks{
+@media screen and (max-width: 500px) {
+   .SideBarLinksMain {
       display: flex;
       align-items: center;
       color: #ffffff;
-      background-color: rgb(18, 34, 49);
+      background-color: rgb(28, 68, 105);
       height: 50px;
       line-height: 40px;
       width: 50px;
-      padding: 5px 10px;
       box-shadow: 2px 2px 3px #333;
       white-space: nowrap;
       overflow: hidden;
       transition: 0.5s width;
+      padding: 0;
    }
 
-   .SideBarLinks:hover{
+   .SideBarLinksMain:hover {
       width: 200px;
    }
 
-   .SideBarLinks a{
+   .SideBarLink {
+      height: 100%;
+      padding: 5px 10px;
       display: flex;
       font-size: 18px;
       color: inherit;
       line-height: 40px;
+   }
+
+   .SideBarLink:hover,
+   a.active {
+      background-color: rgb(29, 99, 127);
+   }
+   .SideBarLinksSide {
+      display: none;
+   }
+}
+
+
+@media screen and (max-width: 990px) and (min-width : 500px) {
+   .SideBarLinksMain {
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      background-color: rgb(28, 68, 105);
+      height: 50px;
+      line-height: 40px;
+      width: 50px;
+      box-shadow: 2px 2px 3px #333;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: 0.5s width;
+      padding: 0;
+   }
+
+   .SideBarLinksMain:hover {
+      width: 200px;
+   }
+
+   .SideBarLink {
+      height: 100%;
+      padding: 5px 10px;
+      display: flex;
+      font-size: 18px;
+      color: inherit;
+      line-height: 40px;
+   }
+
+   .SideBarLink:hover,
+   a.active {
+      background-color: rgb(29, 99, 127);
+   }
+   .SideBarLinksSide {
+      display: none;
    }
 }

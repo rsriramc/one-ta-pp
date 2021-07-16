@@ -1,20 +1,45 @@
 import React from "react";
 
 import classes from "./Home.css";
-import Logo from "../../Assets/Images/tap.png";
+import Logo from "../../Assets/Images/Logo.png";
+import Auth from "../Auth/Auth";
+
+import * as actionTypes from "../../Store/actions/actionTypes";
+import { connect } from "react-redux";
+import Animation from "../../Components/Animation/Animation";
 
 class Home extends React.Component {
    render() {
+      // this.componentDidMount(){
+
+      // }
       return (
          <div className={classes.Home}>
-            <div className={classes.LogoContainer}>
-               <div className={classes.SpreadOne}></div>
-               <div className={classes.SpreadTwo}></div>
-               <img src={Logo} alt="Logo" />
+            <img className={classes.Logo} src={Logo} alt="Logo" />
+            <div className={classes.Flex}>
+               <Animation />
+               {this.props.isAuth !== null &&
+               this.props.isAuth !== "demo" &&
+               this.props.isAuth !== "own" ? (
+                  null
+               ) : <Auth />}
             </div>
          </div>
       );
    }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+   return {
+      isAuth: state.token,
+   };
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      loadDemoData: () => dispatch({ type: actionTypes.LOAD_DEMODATA }),
+      loadOwnData: () => dispatch({ type: actionTypes.LOAD_OWNDATA }),
+   };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

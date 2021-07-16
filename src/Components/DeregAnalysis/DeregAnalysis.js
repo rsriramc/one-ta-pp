@@ -3,51 +3,74 @@ import React from "react";
 import classes from "./DeregAnalysis.css";
 import Wrap from "../../hoc/Wrap/Wrap";
 import SideBar from "../UI/SideBar/SideBar";
-import StickTop from '../UI/StickTop/StickTop';
+import StickTop from "../UI/StickTop/StickTop";
+import DefaultText from "../UI/DefaultText/DefaultText";
 
-import deregAna from '../../Assets/Images/deregAnalysis2.jpg';
+import deregAna from "../../Assets/Images/deregAnalysis2.jpg";
 
-import Dereg from './Dereg/Dereg';
+import { faChartBar, /*faClock,*/ faBook } from "@fortawesome/free-solid-svg-icons";
+
+import Dereg from "./Dereg/Dereg";
+import { connect } from "react-redux";
 
 const deregAnalysis = (props) => {
    const deregBars = [];
-   props.subjects.forEach(
-      (subject, index) => {
-         const numStudents = subject.students.length;
-         let deregStudents = 0;
-         subject.students.forEach(
-            (student, index2) => {
-               if (student.isDereg)
-                  deregStudents++;
-            }
-         );
-         deregBars.push(<Dereg key={subject.code} title={subject.title + " " + subject.code} percent={deregStudents/numStudents * 100}></Dereg>)
-      }
-   );
+   props.subjects.forEach((subject, index) => {
+      const numStudents = subject.students.length;
+      let deregStudents = 0;
+      subject.students.forEach((student, index2) => {
+         if (student.isDereg) deregStudents++;
+      });
+      deregBars.push(
+         <Dereg
+            key={subject.code}
+            title={subject.title + " " + subject.code}
+            percent={(deregStudents / numStudents) * 100}
+         ></Dereg>
+      );
+   });
    return (
       <Wrap>
-         <div
-            className={classes.SideBar}
-            style={{
-               position: "fixed",
-               top: "70px",
-               left: "5px",
-               width: "19%",
-               height: "100vh",
-               float: "left",
-            }}
-            // onClick={() => props.changeDisplayStyle()}
-         >
-            <SideBar />
-         </div>
+         <SideBar
+            place="Subjects"
+            items={[
+               {
+                  linkTo: "/subjects",
+                  descrip: "Subjects",
+                  icon: faBook,
+                  prefer: "Main",
+               },
+               {
+                  linkTo: "/deregAnalysis",
+                  descrip: "Dereg.. Analysis",
+                  icon: faChartBar,
+                  prefer: "Main",
+               },
+            ]}
+         />
          <div className={classes.DeregAnalysis}>
             <StickTop top={64} stickat={-80} height={150} bg={deregAna}>
                De-Registration Analysis
             </StickTop>
-            {deregBars}
+            {props.subjects.length ? (
+               deregBars
+            ) : (
+               <DefaultText>
+                  There are no subjects.
+                  <br />
+                  Go to subejcts and Click on the +New Button to Add New
+                  Subjects.
+               </DefaultText>
+            )}
          </div>
       </Wrap>
    );
 };
 
-export default deregAnalysis;
+const mapStateToProps = (state) => {
+   return {
+      subjects: state.subjects,
+   };
+};
+
+export default connect(mapStateToProps, null)(deregAnalysis);

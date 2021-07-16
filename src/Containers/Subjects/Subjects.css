@@ -9,6 +9,10 @@
    transition: 0.2s all;
 }
 
+.Note {
+   text-align: center;
+}
+
 .AddNew {
    position: fixed;
    bottom: 40px;
@@ -29,11 +33,84 @@
    transform: scale(1.05);
 }
 
+.Save {
+   display: block;
+   width: 200px;
+   margin: 0 auto;
+   height: 36px;
+   padding: 7px;
+   font-size: 16px;
+   background-color: salmon;
+   border: 2px solid grey;
+   border-radius: 5px;
+   margin-top: 20px;
+   cursor: pointer;
+}
+
+.Save:disabled {
+   background-color: lightgreen;
+}
+.SubjectContentBlocks {
+}
+.SubjectContentTiles {
+   margin-top: 20px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+
+.SubjectContentList {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+
 @media screen and (max-width: 500px) {
    .Subjects {
       min-height: 110vh;
       width: 100%;
       margin-left: 0;
+      background-image: url(../../Assets/Images/bg.png);
+      background-attachment: fixed;
+      background-position: top;
+      background-size: contain;
+      margin-bottom: 80px;
+   }
+
+   .SubjectContentBlocks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+   }
+
+   .AddNew {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgb(231, 231, 231);
+      color: rgb(56, 105, 101);
+      box-shadow: 0px 0px 10px 2px rgb(77, 77, 77) inset;
+      height: 40px;
+      font-size: 24px;
+      padding: 2px 10px;
+      line-height: 36px;
+      border-radius: 20px;
+   }
+}
+
+@media screen and (min-width: 500px) and (max-width: 685px) {
+   .SubjectContentBlocks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+   }
+}
+
+@media screen and (max-width: 990px) and (min-width: 500px) {
+   .Subjects {
+      min-height: 110vh;
+      width: calc(100% - 80px);
+      margin-left: 70px;
       background-image: url(../../Assets/Images/bg.png);
       background-attachment: fixed;
       background-position: top;

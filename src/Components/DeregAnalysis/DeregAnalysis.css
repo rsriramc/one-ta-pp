@@ -21,3 +21,17 @@
       background-size: contain;
    }
 }
+
+@media screen and (max-width: 990px) and (min-width : 500px) {
+   .DeregAnalysis {
+      min-height: 110vh;
+      padding: 5px;
+      box-sizing: border-box;
+      width: calc(100% - 80px);
+      margin-left: 70px;
+      background-image: url(../../Assets/Images/bg.png);
+      background-attachment: fixed;
+      background-position: top;
+      background-size: contain;
+   }
+}

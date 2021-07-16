@@ -16,6 +16,14 @@
    transform: scale(1.05);
    box-shadow: 4px 6px 12px #aaa;
 }
+.SubjectTiles:hover {
+   transform: scale(1.02);
+   box-shadow: 4px 6px 12px #aaa;
+}
+.SubjectList:hover {
+   transform: scale(1.03);
+   box-shadow: 4px 6px 12px #aaa;
+}
 
 .ImgBlocks {
    position: absolute;
@@ -31,7 +39,7 @@
 
 .InfoBlocks {
    width: 100%;
-   border: 1px solid black;
+   /* border: 1px solid black; */
    background-color: #ffffffea;
    position: absolute;
    padding: 10px;
@@ -42,6 +50,7 @@
 
 .CodeBlocks {
    float: right;
+   padding-left: 5px;
 }
 
 @media screen and (max-width: 500px) {
@@ -76,13 +85,15 @@
 }
 
 .SubjectTiles {
-   width: 80%;
+   width: 90%;
    border: 2px solid black;
    max-width: 600px;
-   margin: 20px auto;
-   height: 150px;
+   display: inline-block;
+   height: 180px;
    position: relative;
    cursor: pointer;
+   margin-top: 20px;
+   transition: 0.4s transform;
 }
 
 .ImgTiles {
@@ -124,9 +135,10 @@
    max-width: 440px;
    display: inline-block;
    margin: 20px 0;
-   height: 100px;
+   min-height: 100px;
    position: relative;
    cursor: pointer;
+   transition: 0.4s transform;
 }
 
 .ImgList {
@@ -144,12 +156,12 @@
 .InfoList {
    width: 69%;
    background-color: #ffffffdd;
-   position: absolute;
+   /* position: absolute; */
    padding: 10px;
    box-sizing: border-box;
-   bottom: 0;
-   right: 0;
-   height: 100%;
+   /* top: 0;
+   right: 0; */
+   float: right;
    line-height: 1.6;
 }
 
@@ -160,4 +172,42 @@
 
 .brList {
    display: block;
+}
+
+@media screen and (min-width: 0px) {
+   .SubjectTiles {
+      width: 80%;
+      border: 2px solid black;
+      max-width: 360px;
+      display: inline-block;
+      height: 180px;
+      position: relative;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.4s transform;
+   }
+}
+
+@media screen and (min-width: 1200px) {
+   .SubjectList {
+      max-width: 42%;
+   }
+}
+
+@media screen and (min-width: 500px) and (max-width: 685px) {
+   .SubjectBlocks {
+      width: 40%;
+   }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1135px) {
+   .SubjectBlocks {
+      width: 28%;
+   }
+}
+
+@media screen and (min-width: 1340px) and (max-width: 1525px) {
+   .SubjectBlocks {
+      width: 20%;
+   }
 }

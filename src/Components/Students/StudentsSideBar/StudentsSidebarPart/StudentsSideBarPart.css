@@ -9,9 +9,15 @@
    color: rgb(33, 64, 78);
    display: flex;
    width: calc(100% - 10px);
-   margin: 4px 10px;
+   margin: 4px;
    box-sizing: border-box;
    text-decoration: none;
+   transition: 0.2s all;
+}
+
+.StudentsSideBarPart:hover{
+   transform: scale(1.05);
+   box-shadow: 4px 4px 8px #ccc;
 }
 
 .Left{
@@ -26,4 +32,11 @@
 }
 .Right{
    width: 70px;
+}
+
+
+@media screen and (max-width : 990px){
+   .Left {
+      display: none;
+   }
 }
